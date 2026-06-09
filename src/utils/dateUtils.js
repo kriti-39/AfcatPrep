@@ -13,8 +13,8 @@ export function getDayNumber(dateStr) {
 export function getDaysUntilExam() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const exam = new Date(EXAM_DATE);
-  return Math.ceil((exam - today) / (1000 * 60 * 60 * 24));
+  const exam = new Date(EXAM_DATE + 'T00:00:00'); // local midnight, avoids UTC offset bug
+  return Math.round((exam - today) / (1000 * 60 * 60 * 24));
 }
 
 export function formatDate(dateStr) {
