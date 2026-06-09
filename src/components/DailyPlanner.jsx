@@ -178,57 +178,53 @@ export default function DailyPlanner() {
   return (
     <div className="max-w-2xl mx-auto">
       {/* ── Dashboard ── */}
-      {/* Row 1: calendar countdown + day number */}
-      <div className="grid grid-cols-2 gap-2 mb-2">
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-3 text-center">
-          <div className="text-3xl font-bold text-indigo-400">{daysLeft}</div>
-          <div className="text-xs text-slate-500 mt-0.5">Days Left to Exam</div>
-          <div className="text-xs text-slate-600 mt-0.5">(calendar, unaffected by pace)</div>
-        </div>
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-3 text-center">
-          <div className="text-3xl font-bold text-white">
+
+      {/* Hero card — days left + plan day side by side */}
+      <div className="bg-slate-800 border border-slate-700 rounded-2xl px-4 py-3 mb-2 flex items-center justify-between">
+        <div>
+          <p className="text-xs text-slate-500 mb-0.5">Plan Day</p>
+          <p className="text-2xl font-bold text-white leading-none">
             {todayDayNum > 0 && todayDayNum <= 50 ? todayDayNum : '-'}
-            <span className="text-base text-slate-500">/50</span>
-          </div>
-          <div className="text-xs text-slate-500 mt-0.5">Today's Plan Day</div>
+            <span className="text-sm font-normal text-slate-500"> / 50</span>
+          </p>
+        </div>
+        <div className="h-8 w-px bg-slate-700" />
+        <div className="text-center">
+          <p className="text-xs text-slate-500 mb-0.5">Overall Completion</p>
+          <p className="text-2xl font-bold text-emerald-400 leading-none">{overallPct}%</p>
+          <p className="text-xs text-slate-600 mt-0.5">{doneTasksAllDays}/{totalTasksAllDays} tasks</p>
+        </div>
+        <div className="h-8 w-px bg-slate-700" />
+        <div className="text-right">
+          <p className="text-xs text-slate-500 mb-0.5">Days to Exam</p>
+          <p className="text-2xl font-bold text-indigo-400 leading-none">{daysLeft}</p>
+          <p className="text-xs text-slate-600 mt-0.5">calendar</p>
         </div>
       </div>
 
-      {/* Row 2: overall % bar */}
-      <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 mb-2">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-semibold text-slate-300 uppercase tracking-widest">Overall Completion</span>
-          <span className="text-lg font-bold text-emerald-400">{overallPct}%</span>
-        </div>
-        <div className="h-2.5 bg-slate-700 rounded-full overflow-hidden">
+      {/* Overall progress bar */}
+      <div className="mb-2 px-1">
+        <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
           <div
-            className="h-2.5 rounded-full bg-emerald-500 transition-all duration-500"
+            className="h-2 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-400 transition-all duration-500"
             style={{ width: `${overallPct}%` }}
           />
         </div>
-        <div className="flex justify-between mt-1.5">
-          <span className="text-xs text-slate-500">{doneTasksAllDays} tasks done</span>
-          <span className="text-xs text-slate-500">{totalTasksAllDays} total tasks</span>
-        </div>
-        <p className="text-xs text-slate-600 mt-1">Counts every individual task ticked — across all days</p>
       </div>
 
-      {/* Row 3: day-wise breakdown */}
-      <div className="grid grid-cols-3 gap-2 mb-5">
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-3 text-center">
-          <div className="text-2xl font-bold text-emerald-400">{daysCompleted}</div>
-          <div className="text-xs text-slate-500 mt-0.5">Days Fully Done</div>
-          <div className="text-xs text-slate-600">all tasks ✓</div>
+      {/* Day-wise stats — 3 compact pills */}
+      <div className="grid grid-cols-3 gap-2 mb-4">
+        <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl px-2 py-2.5 text-center">
+          <div className="text-xl font-bold text-emerald-400">{daysCompleted}</div>
+          <div className="text-xs text-slate-400 leading-tight mt-0.5">Fully<br/>Done</div>
         </div>
-        <div className="bg-slate-800 border border-amber-700/30 rounded-xl p-3 text-center">
-          <div className="text-2xl font-bold text-amber-400">{partialDays}</div>
-          <div className="text-xs text-slate-500 mt-0.5">Days In Progress</div>
-          <div className="text-xs text-slate-600">go back &amp; finish</div>
+        <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl px-2 py-2.5 text-center">
+          <div className="text-xl font-bold text-amber-400">{partialDays}</div>
+          <div className="text-xs text-slate-400 leading-tight mt-0.5">In<br/>Progress</div>
         </div>
-        <div className="bg-slate-800 border border-red-700/30 rounded-xl p-3 text-center">
-          <div className="text-2xl font-bold text-red-400">{pendingDays.length}</div>
-          <div className="text-xs text-slate-500 mt-0.5">Past Days Pending</div>
-          <div className="text-xs text-slate-600">date passed, undone</div>
+        <div className={`rounded-xl px-2 py-2.5 text-center border ${pendingDays.length > 0 ? 'bg-red-500/10 border-red-500/20' : 'bg-slate-800 border-slate-700'}`}>
+          <div className={`text-xl font-bold ${pendingDays.length > 0 ? 'text-red-400' : 'text-slate-500'}`}>{pendingDays.length}</div>
+          <div className="text-xs text-slate-400 leading-tight mt-0.5">Past<br/>Pending</div>
         </div>
       </div>
 
