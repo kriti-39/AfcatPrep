@@ -13,8 +13,9 @@ export function getDayNumber(dateStr) {
 export function getDaysUntilExam() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const exam = new Date(EXAM_DATE + 'T00:00:00'); // local midnight, avoids UTC offset bug
-  return Math.round((exam - today) / (1000 * 60 * 60 * 24));
+  const exam = new Date(EXAM_DATE + 'T00:00:00');
+  const total = Math.round((exam - today) / (1000 * 60 * 60 * 24));
+  return total - 2; // Aug 7 (rest) and Aug 8 (exam day) don't count as study days
 }
 
 export function formatDate(dateStr) {
