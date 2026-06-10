@@ -212,19 +212,19 @@ export default function DailyPlanner() {
         </div>
       </div>
 
-      {/* Day-wise stats — 3 compact pills */}
-      <div className="grid grid-cols-3 gap-2 mb-4">
-        <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl px-2 py-2.5 text-center">
-          <div className="text-xl font-bold text-emerald-400">{daysCompleted}</div>
-          <div className="text-xs text-slate-400 leading-tight mt-0.5">Fully<br/>Done</div>
+      {/* Day-wise stats — inline pills */}
+      <div className="flex gap-2 mb-4">
+        <div className="flex-1 flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-2.5 py-1.5">
+          <span className="text-sm font-bold text-emerald-400">{daysCompleted}</span>
+          <span className="text-xs text-slate-400">Done</span>
         </div>
-        <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl px-2 py-2.5 text-center">
-          <div className="text-xl font-bold text-amber-400">{partialDays}</div>
-          <div className="text-xs text-slate-400 leading-tight mt-0.5">In<br/>Progress</div>
+        <div className="flex-1 flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/20 rounded-lg px-2.5 py-1.5">
+          <span className="text-sm font-bold text-amber-400">{partialDays}</span>
+          <span className="text-xs text-slate-400">In Progress</span>
         </div>
-        <div className={`rounded-xl px-2 py-2.5 text-center border ${pendingDays.length > 0 ? 'bg-red-500/10 border-red-500/20' : 'bg-slate-800 border-slate-700'}`}>
-          <div className={`text-xl font-bold ${pendingDays.length > 0 ? 'text-red-400' : 'text-slate-500'}`}>{pendingDays.length}</div>
-          <div className="text-xs text-slate-400 leading-tight mt-0.5">Past<br/>Pending</div>
+        <div className={`flex-1 flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 border ${pendingDays.length > 0 ? 'bg-red-500/10 border-red-500/20' : 'bg-slate-800 border-slate-700'}`}>
+          <span className={`text-sm font-bold ${pendingDays.length > 0 ? 'text-red-400' : 'text-slate-500'}`}>{pendingDays.length}</span>
+          <span className="text-xs text-slate-400">Pending</span>
         </div>
       </div>
 
