@@ -240,7 +240,7 @@ export default function DailyPlanner() {
 
       {todayDayNum >= 1 && todayDayNum <= 50 ? (
         <>
-          {/* Today with timer */}
+          {/* ── TODAY ── */}
           {todayPlan && (() => {
             const doneTasks = new Set(completedTasks[todayPlan.day] || []);
             const dayTotalMins = totalMins(todayPlan.tasks) + 27;
@@ -248,34 +248,27 @@ export default function DailyPlanner() {
               + (doneTasks.has('eng') ? 27 : 0);
             return (
               <section className="mb-4">
-                <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-2">
-                  <Calendar size={12} /> {formatDate(today)}
-                </h3>
+                <SectionLabel icon={<Calendar size={12} />} text={formatDate(today)} />
                 <DailyTimer totalMins={dayTotalMins} doneMins={dayDoneMins} dayNum={todayDayNum} />
-                {renderDayCard(todayPlan, true, pendingDays.some(d => d.day === todayPlan.day))}
+                {renderDayCard(todayPlan, true, false)}
               </section>
             );
           })()}
 
-          {/* Pending past days */}
+          {/* ── PENDING ── */}
           {pendingDays.length > 0 && (
             <section className="mb-4">
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-amber-400/60 mb-3 flex items-center gap-2">
-                <AlertTriangle size={12} /> Incomplete Past Days
-              </h3>
+              <SectionLabel icon={<AlertTriangle size={12} className="text-amber-400" />} text="Incomplete Past Days" amber />
               {pendingDays.map(d => renderDayCard(d, false, true))}
             </section>
           )}
 
-          {/* All upcoming days — always visible, tick anytime */}
-          {upcomingDays.length > 0 && (
-            <section>
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-2">
-                <ChevronDown size={12} /> Upcoming — do whenever you're ready
-              </h3>
-              {upcomingDays.map(d => renderDayCard(d, false, false))}
-            </section>
-          )}
+          {/* ── FULL 50-DAY SCHEDULE ── */}
+          <section>
+            <SectionLabel icon={<ChevronDown size={12} />} text={`All 50 Days — do at your own pace`} />
+            {STUDY_PLAN.filter(d => d.day !== todayDayNum && !pendingDays.find(p => p.day === d.day))
+              .map(d => renderDayCard(d, false, false))}
+          </section>
         </>
       ) : todayDayNum < 1 ? (
         <div className="text-center py-16 text-slate-500">
@@ -290,5 +283,13 @@ export default function DailyPlanner() {
         </div>
       )}
     </div>
+  );
+}
+
+function SectionLabel({ icon, text, amber }) {
+  return (
+    <h3 className={`text-xs font-semibold uppercase tracking-widest mb-3 flex items-center gap-2 ${amber ? 'text-amber-400/70' : 'text-slate-500'}`}>
+      {icon} {text}
+    </h3>
   );
 }

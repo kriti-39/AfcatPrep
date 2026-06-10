@@ -1,16 +1,14 @@
 import { useState } from 'react';
-import { CalendarCheck, BookOpen, Brain, List, Plane, FolderOpen, ClipboardList } from 'lucide-react';
+import { CalendarCheck, BookOpen, Brain, Plane, FolderOpen, ClipboardList } from 'lucide-react';
 import DailyPlanner from './components/DailyPlanner';
 import VocabSection from './components/VocabSection';
 import StudyMaterial from './components/StudyMaterial';
-import FullSchedule from './components/FullSchedule';
 import PDFManager from './components/PDFManager';
 import PYQQuiz from './components/PYQQuiz';
 import { getDaysUntilExam } from './utils/dateUtils';
 
 const TABS = [
-  { id: 'today',    label: 'Today',    icon: CalendarCheck },
-  { id: 'schedule', label: 'Schedule', icon: List },
+  { id: 'today',    label: 'Planner',  icon: CalendarCheck },
   { id: 'pyq',      label: 'PYQ',      icon: ClipboardList },
   { id: 'vocab',    label: 'Vocab',    icon: Brain },
   { id: 'material', label: 'Notes',    icon: BookOpen },
@@ -60,7 +58,6 @@ export default function App() {
 
       <main className="max-w-2xl mx-auto px-4 py-6">
         {tab === 'today'    && <DailyPlanner />}
-        {tab === 'schedule' && <FullSchedule />}
         {tab === 'pyq'      && <PYQQuiz />}
         {tab === 'vocab'    && <VocabSection />}
         {tab === 'material' && <StudyMaterial />}
