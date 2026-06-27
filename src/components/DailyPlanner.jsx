@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CheckCircle2, Circle, AlertTriangle, Calendar, Trophy, Clock, ChevronDown, ChevronUp } from 'lucide-react';
-import { STUDY_PLAN, SUBJECTS, ENGLISH_VIDEOS } from '../data/studyPlan';
+import { STUDY_PLAN, SUBJECTS, ENGLISH_VIDEOS, START_DATE } from '../data/studyPlan';
 import { getDayNumber, getTodayString, formatDate, getDaysUntilExam, totalMins } from '../utils/dateUtils';
 import { useStorage } from '../hooks/useStorage';
 import DailyTimer from './DailyTimer';
@@ -258,50 +258,51 @@ export default function DailyPlanner() {
         </div>
       )}
 
-      {todayDayNum >= 1 && todayDayNum <= PLAN_LENGTH ? (
-        <>
-          {/* ── TODAY ── */}
-          {todayPlan && (() => {
-            const doneTasks = new Set(completedTasks[todayPlan.day] || []);
-            const dayTotalMins = totalMins(todayPlan.tasks) + 27;
-            const dayDoneMins = todayPlan.tasks.reduce((sum, t, i) => sum + (doneTasks.has(`t${i}`) ? t.mins : 0), 0)
-              + (doneTasks.has('eng') ? 27 : 0);
-            return (
-              <section className="mb-4">
-                <SectionLabel icon={<Calendar size={12} />} text={formatDate(today)} />
-                <DailyTimer totalMins={dayTotalMins} doneMins={dayDoneMins} dayNum={todayDayNum} />
-                {renderDayCard(todayPlan, true, false)}
-              </section>
-            );
-          })()}
-
-          {/* ── PENDING ── */}
-          {pendingDays.length > 0 && (
-            <section className="mb-4">
-              <SectionLabel icon={<AlertTriangle size={12} className="text-amber-400" />} text="Incomplete Past Days" amber />
-              {pendingDays.map(d => renderDayCard(d, false, true))}
-            </section>
-          )}
-
-          {/* ── FULL 50-DAY SCHEDULE ── */}
-          <section>
-            <SectionLabel icon={<ChevronDown size={12} />} text={`All ${PLAN_LENGTH} Days — do at your own pace`} />
-            {STUDY_PLAN.filter(d => d.day !== todayDayNum && !pendingDays.find(p => p.day === d.day))
-              .map(d => renderDayCard(d, false, false))}
-          </section>
-        </>
-      ) : todayDayNum < 1 ? (
-        <div className="text-center py-16 text-slate-500">
-          <Trophy size={40} className="mx-auto mb-3 opacity-20" />
-          <p>Plan starts June 28, 2026</p>
-        </div>
-      ) : (
-        <div className="text-center py-16">
-          <Trophy size={48} className="mx-auto mb-3 text-yellow-400" />
-          <p className="text-white text-2xl font-bold">{PLAN_LENGTH} Days Complete! 🎉</p>
-          <p className="text-slate-400 mt-2">Go crush AFCAT 2!</p>
+      {/* Before plan starts: gentle note, but still show all days below */}
+      {todayDayNum < 1 && (
+        <div className="bg-slate-800 border border-slate-700 rounded-xl p-3 mb-4 text-center">
+          <p className="text-sm text-slate-300">📅 Plan starts {formatDate(START_DATE)} — but you can start any day's target right now!</p>
         </div>
       )}
+
+      {/* All days complete celebration */}
+      {todayDayNum > PLAN_LENGTH && daysCompleted === PLAN_LENGTH && (
+        <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 mb-4 text-center">
+          <Trophy size={32} className="mx-auto mb-2 text-yellow-400" />
+          <p className="text-white text-lg font-bold">{PLAN_LENGTH} Days Complete! 🎉</p>
+          <p className="text-slate-400 text-sm mt-1">Go crush AFCAT 2!</p>
+        </div>
+      )}
+
+      {/* ── TODAY (only if today falls within plan window) ── */}
+      {todayPlan && (() => {
+        const doneTasks = new Set(completedTasks[todayPlan.day] || []);
+        const dayTotalMins = totalMins(todayPlan.tasks) + 27;
+        const dayDoneMins = todayPlan.tasks.reduce((sum, t, i) => sum + (doneTasks.has(`t${i}`) ? t.mins : 0), 0)
+          + (doneTasks.has('eng') ? 27 : 0);
+        return (
+          <section className="mb-4">
+            <SectionLabel icon={<Calendar size={12} />} text={`Today — ${formatDate(today)}`} />
+            <DailyTimer totalMins={dayTotalMins} doneMins={dayDoneMins} dayNum={todayDayNum} />
+            {renderDayCard(todayPlan, true, false)}
+          </section>
+        );
+      })()}
+
+      {/* ── PENDING ── */}
+      {pendingDays.length > 0 && (
+        <section className="mb-4">
+          <SectionLabel icon={<AlertTriangle size={12} className="text-amber-400" />} text="Incomplete Past Days" amber />
+          {pendingDays.map(d => renderDayCard(d, false, true))}
+        </section>
+      )}
+
+      {/* ── FULL SCHEDULE — always visible so you can work ahead ── */}
+      <section>
+        <SectionLabel icon={<ChevronDown size={12} />} text={`All ${PLAN_LENGTH} Days — do at your own pace`} />
+        {STUDY_PLAN.filter(d => d.day !== todayDayNum && !pendingDays.find(p => p.day === d.day))
+          .map(d => renderDayCard(d, false, false))}
+      </section>
     </div>
   );
 }
