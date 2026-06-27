@@ -1,8 +1,8 @@
 // AFCAT 2 2026 — REVAMPED 39-Day Compressed Plan (InsightsSSB blueprint, merged)
-// Fresh restart: Day 1 = June 29, 2026. Last study day = Aug 6. Rest Aug 7. Exam Aug 8, 2026.
+// Fresh restart: Day 1 = June 28, 2026. Last study day = Aug 5. Aug 6-7 buffer/rest. Exam Aug 8, 2026.
 // Original 50-day content compressed into 39 days by merging the 11 lightest adjacent day-pairs.
 
-export const START_DATE = '2026-06-29';
+export const START_DATE = '2026-06-28';
 export const EXAM_DATE = '2026-08-08';
 
 // subject tags
@@ -18,7 +18,7 @@ export const SUBJECTS = {
 // Each task entry: { text, mins } — mins = estimated time in minutes
 export const STUDY_PLAN = [
   {
-    day: 1, date: '2026-06-29',
+    day: 1, date: '2026-06-28',
     title: "Number System",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -31,7 +31,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 2, date: '2026-06-30',
+    day: 2, date: '2026-06-29',
     title: "Simplification Part 1",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
@@ -43,7 +43,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 3, date: '2026-07-01',
+    day: 3, date: '2026-06-30',
     title: "Simplification Part 2 + Percentage Start",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -58,7 +58,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 4, date: '2026-07-02',
+    day: 4, date: '2026-07-01',
     title: "Percentage Part 2",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
@@ -70,7 +70,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 5, date: '2026-07-03',
+    day: 5, date: '2026-07-02',
     title: "Percentage Part 3",
     subjects: ["math"],
     hasAssignmentFile: true,
@@ -82,7 +82,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 6, date: '2026-07-04',
+    day: 6, date: '2026-07-03',
     title: "Ratio & Proportion Part 1",
     subjects: ["math"],
     hasAssignmentFile: false,
@@ -94,7 +94,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 7, date: '2026-07-05',
+    day: 7, date: '2026-07-04',
     title: "Ratio & Proportion Part 2",
     subjects: ["math"],
     hasAssignmentFile: true,
@@ -106,7 +106,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 8, date: '2026-07-06',
+    day: 8, date: '2026-07-05',
     title: "Averages Part 1 + Averages Part 2",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
@@ -122,7 +122,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 9, date: '2026-07-07',
+    day: 9, date: '2026-07-06',
     title: "Averages Part 3 + Profit & Loss Start",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
@@ -135,7 +135,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 10, date: '2026-07-08',
+    day: 10, date: '2026-07-07',
     title: "Profit & Loss Part 1 + Profit & Loss Part 2",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
@@ -151,7 +151,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 11, date: '2026-07-09',
+    day: 11, date: '2026-07-08',
     title: "Profit & Loss Part 3",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -163,7 +163,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 12, date: '2026-07-10',
+    day: 12, date: '2026-07-09',
     title: "Simple Interest",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -177,7 +177,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 13, date: '2026-07-11',
+    day: 13, date: '2026-07-10',
     title: "Compound Interest + Mixed Interest + Partnership",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -193,7 +193,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 14, date: '2026-07-12',
+    day: 14, date: '2026-07-11',
     title: "Partnership",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -205,7 +205,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 15, date: '2026-07-13',
+    day: 15, date: '2026-07-12',
     title: "🔁 Revision Day — Full History",
     subjects: ["revision","gk"],
     hasAssignmentFile: false,
@@ -216,7 +216,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 16, date: '2026-07-14',
+    day: 16, date: '2026-07-13',
     title: "Mixture & Allegation Part 1 + Mixture & Allegation Part 2",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -231,7 +231,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 17, date: '2026-07-15',
+    day: 17, date: '2026-07-14',
     title: "Time & Work Part 1",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
@@ -243,7 +243,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 18, date: '2026-07-16',
+    day: 18, date: '2026-07-15',
     title: "Time & Work Part 2",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -256,7 +256,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 19, date: '2026-07-17',
+    day: 19, date: '2026-07-16',
     title: "Time Speed Distance Part 1 + Time Speed Distance Part 2",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
@@ -272,7 +272,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 20, date: '2026-07-18',
+    day: 20, date: '2026-07-17',
     title: "🔁 Revision Day — Science + Polity",
     subjects: ["revision","gk"],
     hasAssignmentFile: false,
@@ -283,7 +283,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 21, date: '2026-07-19',
+    day: 21, date: '2026-07-18',
     title: "Time Speed Distance Part 3 — Trains + Time Speed Distance Part 4 — Boats + Assignment",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -298,7 +298,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 22, date: '2026-07-20',
+    day: 22, date: '2026-07-19',
     title: "Clock",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -311,7 +311,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 23, date: '2026-07-21',
+    day: 23, date: '2026-07-20',
     title: "Ages",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -324,7 +324,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 24, date: '2026-07-22',
+    day: 24, date: '2026-07-21',
     title: "Mensuration Part 1",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
@@ -336,7 +336,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 25, date: '2026-07-23',
+    day: 25, date: '2026-07-22',
     title: "Mensuration Part 2",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -349,7 +349,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 26, date: '2026-07-24',
+    day: 26, date: '2026-07-23',
     title: "🔁 Revision Day — Polity, Economy, Environment, Geography",
     subjects: ["revision","gk"],
     hasAssignmentFile: false,
@@ -361,7 +361,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 27, date: '2026-07-25',
+    day: 27, date: '2026-07-24',
     title: "Probability",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -374,7 +374,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 28, date: '2026-07-26',
+    day: 28, date: '2026-07-25',
     title: "Statistics",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -388,7 +388,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 29, date: '2026-07-27',
+    day: 29, date: '2026-07-26',
     title: "Height & Distance",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
@@ -402,7 +402,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 30, date: '2026-07-28',
+    day: 30, date: '2026-07-27',
     title: "Analogy + Non-Verbal Reasoning Part 1",
     subjects: ["reasoning","gk"],
     hasAssignmentFile: false,
@@ -419,7 +419,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 31, date: '2026-07-29',
+    day: 31, date: '2026-07-28',
     title: "Non-Verbal Reasoning Part 2",
     subjects: ["reasoning","gk"],
     hasAssignmentFile: true,
@@ -432,7 +432,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 32, date: '2026-07-30',
+    day: 32, date: '2026-07-29',
     title: "Mirror & Water Image",
     subjects: ["reasoning","gk"],
     hasAssignmentFile: true,
@@ -444,7 +444,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 33, date: '2026-07-31',
+    day: 33, date: '2026-07-30',
     title: "Number & Alphabet Series",
     subjects: ["reasoning","gk"],
     hasAssignmentFile: false,
@@ -457,7 +457,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 34, date: '2026-08-01',
+    day: 34, date: '2026-07-31',
     title: "Blood Relation + Direction",
     subjects: ["reasoning","gk"],
     hasAssignmentFile: false,
@@ -473,7 +473,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 35, date: '2026-08-02',
+    day: 35, date: '2026-08-01',
     title: "Coding-Decoding + Ranking & Order",
     subjects: ["reasoning"],
     hasAssignmentFile: false,
@@ -489,7 +489,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 36, date: '2026-08-03',
+    day: 36, date: '2026-08-02',
     title: "Dice & Cube + Venn Diagram",
     subjects: ["reasoning"],
     hasAssignmentFile: true,
@@ -503,7 +503,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 37, date: '2026-08-04',
+    day: 37, date: '2026-08-03',
     title: "Syllogism",
     subjects: ["reasoning"],
     hasAssignmentFile: true,
@@ -515,7 +515,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 38, date: '2026-08-05',
+    day: 38, date: '2026-08-04',
     title: "Statement & Conclusion + Jumbled",
     subjects: ["reasoning"],
     hasAssignmentFile: true,
@@ -529,7 +529,7 @@ export const STUDY_PLAN = [
     ],
   },
   {
-    day: 39, date: '2026-08-06',
+    day: 39, date: '2026-08-05',
     title: "Calendar",
     subjects: ["reasoning"],
     hasAssignmentFile: true,

@@ -293,7 +293,7 @@ export default function DailyPlanner() {
       ) : todayDayNum < 1 ? (
         <div className="text-center py-16 text-slate-500">
           <Trophy size={40} className="mx-auto mb-3 opacity-20" />
-          <p>Plan starts June 29, 2026</p>
+          <p>Plan starts June 28, 2026</p>
         </div>
       ) : (
         <div className="text-center py-16">
