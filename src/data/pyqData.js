@@ -4,6 +4,7 @@
 // tag:'PYQ' = real AFCAT previous-year question (year shown). tag:'Practice' = AFCAT-pattern question, not a verified original.
 
 import { PYQ_EXTRA } from './pyqExtra.js';
+import { PYQ_EXTRA2 } from './pyqExtra2.js';
 
 export const SUBJECTS_PYQ = {
   math:      { label: 'Numerical Ability',           emoji: '🔢', color: 'yellow' },
@@ -484,6 +485,7 @@ export const PYQ = [
 
   // ─── PRACTICE QUESTIONS (AFCAT-pattern, not verified PYQs) ───
   ...PYQ_EXTRA,
+  ...PYQ_EXTRA2,
 ];
 
 // Get unique topics per subject
