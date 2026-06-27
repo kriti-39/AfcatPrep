@@ -1,8 +1,8 @@
-// AFCAT 2 2026 — REVAMPED 39-Day Compressed Plan (InsightsSSB blueprint, merged)
-// Fresh restart: Day 1 = June 28, 2026. Last study day = Aug 5. Aug 6-7 buffer/rest. Exam Aug 8, 2026.
-// Original 50-day content compressed into 39 days by merging the 11 lightest adjacent day-pairs.
+// AFCAT 2 2026 — 40-Day Plan (full InsightsSSB 50-day blueprint compressed into 40 days)
+// Day 1 = June 29, 2026. Day 40 = Aug 7. Exam Aug 8, 2026.
+// Each video topic = 30 min, each assignment = 60 min. No topic dropped — 50 days merged into 40.
 
-export const START_DATE = '2026-06-28';
+export const START_DATE = '2026-06-29';
 export const EXAM_DATE = '2026-08-08';
 
 // subject tags
@@ -18,528 +18,488 @@ export const SUBJECTS = {
 // Each task entry: { text, mins } — mins = estimated time in minutes
 export const STUDY_PLAN = [
   {
-    day: 1, date: '2026-06-28',
+    day: 1, date: '2026-06-29',
     title: "Number System",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Number System Part 1 — Divisibility Rules, Unit Digit Concepts", mins: 35 },
-      { text: "📹 Maths: Number System Part 2 — Remainder Theorem, Number Series, Misc", mins: 35 },
+      { text: "📹 Maths: Number System Part 1 — Divisibility Rules, Unit Digit", mins: 30 },
+      { text: "📹 Maths: Number System Part 2 — Remainder Theorem, Number Series, Misc", mins: 30 },
       { text: "📹 GK: Stone Age And Indus Valley", mins: 30 },
-      { text: "📋 Number System Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📋 Number System Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 2, date: '2026-06-29',
-    title: "Simplification Part 1",
+    day: 2, date: '2026-06-30',
+    title: "Simplification",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
     tasks: [
-      { text: "📹 Maths: Simplification Part 1 — Fractions, Numerator & Denominator, Decimals", mins: 35 },
-      { text: "📹 Maths: Simplification Part 2 — Indices & Surds, Square Root & Cube Roots", mins: 35 },
-      { text: "📹 GK: Vedic And Post Vedic Era", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Simplification Part 1 — Fractions, Decimals", mins: 30 },
+      { text: "📹 Maths: Simplification Part 2 — Indices & Surds, Roots", mins: 30 },
+      { text: "📹 GK: Vedic And Post Vedic Era", mins: 30 }
     ],
   },
   {
-    day: 3, date: '2026-06-30',
-    title: "Simplification Part 2 + Percentage Start",
+    day: 3, date: '2026-07-01',
+    title: "Simplification",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Simplification Part 3 — LCM & HCF, Misc", mins: 35 },
-      { text: "📹 Maths: Simplification Part 4 — Algebra", mins: 35 },
-      { text: "📹 Maths: Percentage Part 1 — Theory", mins: 35 },
-      { text: "📹 Maths: Percentage Part 2 — Theory, Basic Questions", mins: 35 },
+      { text: "📹 Maths: Simplification Part 3 — LCM & HCF", mins: 30 },
+      { text: "📹 Maths: Simplification Part 4 — Algebra", mins: 30 },
+      { text: "📹 Maths: Percentage Part 1 — Theory", mins: 30 },
+      { text: "📹 Maths: Percentage Part 2 — Basic Questions", mins: 30 },
       { text: "📹 GK: Basics Of Mahajanapadas", mins: 30 },
-      { text: "📋 Simplification Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📋 Simplification Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 4, date: '2026-07-01',
-    title: "Percentage Part 2",
+    day: 4, date: '2026-07-02',
+    title: "Percentage + Percentage",
     subjects: ["math","gk"],
-    hasAssignmentFile: false,
+    hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Percentage Part 3 — Successive %, Increase And Decrease", mins: 35 },
-      { text: "📹 Maths: Percentage Part 4 — Exam Related, Population Based", mins: 35 },
+      { text: "📹 Maths: Percentage Part 3 — Successive %, Increase/Decrease", mins: 30 },
+      { text: "📹 Maths: Percentage Part 4 — Exam Related, Population", mins: 30 },
       { text: "📹 GK: Mauryan Empire", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Percentage Part 5 — Price Consumption, % Change Area/Volume", mins: 30 },
+      { text: "📹 Maths: Percentage Part 6 — Elections, Venn, Commission", mins: 30 },
+      { text: "📋 Percentage Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 5, date: '2026-07-02',
-    title: "Percentage Part 3",
+    day: 5, date: '2026-07-03',
+    title: "Ratio & Proportion + Ratio & Proportion",
     subjects: ["math"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Percentage Part 5 — Price Consumption Expense, % Change In Area/Volume", mins: 35 },
-      { text: "📹 Maths: Percentage Part 6 — Elections, Misc, Venn, Commission Mix", mins: 35 },
-      { text: "📋 Percentage Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Question Practice", mins: 30 }
+      { text: "📹 Maths: Ratio & Proportion Part 1 — Theory", mins: 30 },
+      { text: "📹 Maths: Ratio & Proportion Part 2 — Basic", mins: 30 },
+      { text: "📹 Maths: Ratio & Proportion Part 3 — A:B:C, Direct/Indirect", mins: 30 },
+      { text: "📹 Maths: Ratio & Proportion Part 4 — Coins, Income", mins: 30 },
+      { text: "📹 Maths: Ratio & Proportion Part 5 — Add/Remove Elements", mins: 30 },
+      { text: "📋 Ratio & Proportion Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 6, date: '2026-07-03',
-    title: "Ratio & Proportion Part 1",
-    subjects: ["math"],
-    hasAssignmentFile: false,
-    tasks: [
-      { text: "📹 Maths: Ratio & Proportion Part 1 — Theory", mins: 35 },
-      { text: "📹 Maths: Ratio & Proportion Part 2 — Basic", mins: 35 },
-      { text: "📹 Maths: Ratio & Proportion Part 3 — A:B:C Type, Direct/Indirect Proportion", mins: 35 },
-      { text: "📄 Question Practice", mins: 30 }
-    ],
-  },
-  {
-    day: 7, date: '2026-07-04',
-    title: "Ratio & Proportion Part 2",
-    subjects: ["math"],
-    hasAssignmentFile: true,
-    tasks: [
-      { text: "📹 Maths: Ratio & Proportion Part 4 — Coins, Income", mins: 35 },
-      { text: "📹 Maths: Ratio & Proportion Part 5 — Adding/Removing Elements, Misc", mins: 35 },
-      { text: "📋 Ratio & Proportion Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Question Practice", mins: 30 }
-    ],
-  },
-  {
-    day: 8, date: '2026-07-05',
-    title: "Averages Part 1 + Averages Part 2",
+    day: 6, date: '2026-07-04',
+    title: "Average + Average",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
     tasks: [
-      { text: "📹 Maths: Average Part 1 — Theory", mins: 35 },
-      { text: "📹 Maths: Average Part 2 — Basic, Consecutive No, Adding/Replacing Elements", mins: 35 },
+      { text: "📹 Maths: Average Part 1 — Theory", mins: 30 },
+      { text: "📹 Maths: Average Part 2 — Basic, Consecutive, Add/Replace", mins: 30 },
       { text: "📹 GK: Buddhism And Jainism, Important Dynasties", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 },
-      { text: "📹 Maths: Average Part 3 — Weighted Average, Examination Marks, Age Related", mins: 35 },
-      { text: "📹 Maths: Average Part 4 — Middle Subject Overlaps, Middle Subject Left Out", mins: 35 },
-      { text: "📹 GK: Delhi Sultanate", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Average Part 3 — Weighted Average, Marks, Age", mins: 30 },
+      { text: "📹 Maths: Average Part 4 — Middle Subject Overlaps", mins: 30 },
+      { text: "📹 GK: Delhi Sultanate", mins: 30 }
     ],
   },
   {
-    day: 9, date: '2026-07-06',
-    title: "Averages Part 3 + Profit & Loss Start",
-    subjects: ["math","gk"],
-    hasAssignmentFile: false,
-    tasks: [
-      { text: "📹 Maths: Average Part 5 — Wrong Written Marks, Misc", mins: 35 },
-      { text: "📹 Maths: Profit & Loss Discount Part 1 — Theory", mins: 35 },
-      { text: "📹 GK: Mughals, Travellers To India, Bhaktism And Sufism", mins: 30 },
-      { text: "📋 Average Assignment (from Telegram — do after watching)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
-    ],
-  },
-  {
-    day: 10, date: '2026-07-07',
-    title: "Profit & Loss Part 1 + Profit & Loss Part 2",
-    subjects: ["math","gk"],
-    hasAssignmentFile: false,
-    tasks: [
-      { text: "📹 Maths: Profit & Loss Part 2 — Basic, Successive Change, Relation On SP And CP", mins: 35 },
-      { text: "📹 Maths: Profit & Loss Part 3 — Marked Price, Dishonest Shopkeeper", mins: 35 },
-      { text: "📹 GK: Vijaynagar And Bahmani, Father Of Various Fields", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 },
-      { text: "📹 Maths: Profit & Loss Part 4 — Articles Combined, Finding CP, Finding SP", mins: 35 },
-      { text: "📹 Maths: Profit & Loss Part 5 — Discount, Compound Case", mins: 35 },
-      { text: "📹 GK: Charter Acts, Land Revenue, Congress Session", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
-    ],
-  },
-  {
-    day: 11, date: '2026-07-08',
-    title: "Profit & Loss Part 3",
+    day: 7, date: '2026-07-05',
+    title: "Average",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Profit & Loss Part 6 — Mixed Problems", mins: 35 },
-      { text: "📹 GK: Battles And Treaties, Invention And Discoveries", mins: 30 },
-      { text: "📋 Profit & Loss Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Average Part 5 — Wrong Written Marks, Misc", mins: 30 },
+      { text: "📹 Maths: Profit & Loss Part 1 — Theory", mins: 30 },
+      { text: "📹 GK: Mughals, Travellers, Bhaktism And Sufism", mins: 30 },
+      { text: "📋 Average Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 12, date: '2026-07-09',
+    day: 8, date: '2026-07-06',
+    title: "Profit & Loss + Profit & Loss",
+    subjects: ["math","gk"],
+    hasAssignmentFile: false,
+    tasks: [
+      { text: "📹 Maths: Profit & Loss Part 2 — Successive Change, SP/CP", mins: 30 },
+      { text: "📹 Maths: Profit & Loss Part 3 — Marked Price, Dishonest Shopkeeper", mins: 30 },
+      { text: "📹 GK: Vijaynagar And Bahmani, Father Of Various Fields", mins: 30 },
+      { text: "📹 Maths: Profit & Loss Part 4 — Articles Combined, CP/SP", mins: 30 },
+      { text: "📹 Maths: Profit & Loss Part 5 — Discount, Compound Case", mins: 30 },
+      { text: "📹 GK: Charter Acts, Land Revenue, Congress Session", mins: 30 }
+    ],
+  },
+  {
+    day: 9, date: '2026-07-07',
+    title: "Profit & Loss",
+    subjects: ["math","gk"],
+    hasAssignmentFile: true,
+    tasks: [
+      { text: "📹 Maths: Profit & Loss Part 6 — Mixed Problems", mins: 30 },
+      { text: "📹 GK: Battles And Treaties, Invention And Discoveries", mins: 30 },
+      { text: "📋 Profit & Loss Assignment (Telegram file)", mins: 60 }
+    ],
+  },
+  {
+    day: 10, date: '2026-07-08',
     title: "Simple Interest",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Simple Interest Part 1 — SI Theory, SI Basic", mins: 35 },
-      { text: "📹 Maths: Simple Interest Part 2 — Amount Becomes N Times, Two Different Times, Misc", mins: 35 },
+      { text: "📹 Maths: Simple Interest Part 1 — Theory, Basic", mins: 30 },
+      { text: "📹 Maths: Simple Interest Part 2 — N Times, Different Times", mins: 30 },
       { text: "📹 GK: Governor Generals And Viceroys, Books & Authors", mins: 30 },
-      { text: "📋 Simple Interest Assignment (file from Telegram)", mins: 60 },
-      { text: "📹 GK: History Video Part 1 (YouTube/Telegram)", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 GK: History Video Part 1", mins: 30 },
+      { text: "📋 Simple Interest Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 13, date: '2026-07-10',
-    title: "Compound Interest + Mixed Interest + Partnership",
+    day: 11, date: '2026-07-09',
+    title: "Compound Interest + Mixed Interest Problems",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Compound Interest Part 1 — CI Theory, Basic Questions", mins: 35 },
-      { text: "📹 Maths: Compound Interest Part 2 — Amount Becomes N Times, CI Misc", mins: 35 },
-      { text: "📹 GK: Important Commissions In British India, Political Organisations And Societies", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 },
-      { text: "📹 Maths: Mixed Interest Problems — SI-CI Difference, Mixed SI CI Problems", mins: 35 },
+      { text: "📹 Maths: Compound Interest Part 1 — Theory, Basic", mins: 30 },
+      { text: "📹 Maths: Compound Interest Part 2 — N Times, Misc", mins: 30 },
+      { text: "📹 GK: Important Commissions, Political Organisations & Societies", mins: 30 },
+      { text: "📹 Maths: Mixed Interest Problems — SI-CI Difference, Mixed", mins: 30 },
       { text: "📹 GK: Marathas, Revolt Of 1857, Revolutionary Freedom Struggle", mins: 30 },
-      { text: "📋 Compound Interest Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📋 Compound Interest Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 14, date: '2026-07-11',
+    day: 12, date: '2026-07-10',
     title: "Partnership",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Partnership — Share Of One Person, Profit, Finding Invested Time, Misc", mins: 35 },
-      { text: "📹 GK: Newspaper In Modern India, Socio-Reform Movement, United Nations", mins: 30 },
-      { text: "📋 Partnership Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Partnership — Share, Profit, Invested Time, Misc", mins: 30 },
+      { text: "📹 GK: Newspaper In Modern India, Socio-Reform, United Nations", mins: 30 },
+      { text: "📋 Partnership Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 15, date: '2026-07-12',
-    title: "🔁 Revision Day — Full History",
-    subjects: ["revision","gk"],
+    day: 13, date: '2026-07-11',
+    title: "🔁 Revise Full History (Ancient → Modern) + Mixture & Allegation",
+    subjects: ["revision","gk","math"],
     hasAssignmentFile: false,
     tasks: [
-      { text: "📝 Revise All History Notes (Ancient → Modern India)", mins: 90 },
-      { text: "📹 GK: History Video Part 2 (YouTube/Telegram)", mins: 30 },
-      { text: "📝 Make flashcards for important battles, dates, personalities", mins: 30 }
+      { text: "📝 Revise Full History (Ancient → Modern)", mins: 60 },
+      { text: "📹 GK: History Video Part 2", mins: 30 },
+      { text: "📹 Maths: Mixture & Allegation Part 1 — Basic, Acid-Water, Alloys", mins: 30 },
+      { text: "📹 GK: Alloys, Common Names, First Cabinet, Party & Founders", mins: 30 }
     ],
   },
   {
-    day: 16, date: '2026-07-13',
-    title: "Mixture & Allegation Part 1 + Mixture & Allegation Part 2",
+    day: 14, date: '2026-07-12',
+    title: "Mixture & Allegation",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Mixture & Allegation Part 1 — Basic, One Item Added, Acid-Water, Alloys", mins: 35 },
-      { text: "📹 GK: Alloys, Common Names, First Cabinet Of Free India, Party And Founders", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 },
-      { text: "📹 Maths: Mixture & Allegation Part 2 — Quantity Taken Out/Added, Replacement/Repetition", mins: 35 },
-      { text: "📹 GK: SI Units, Logies, Vitamins And Minerals, Disease, Miscellaneous", mins: 30 },
-      { text: "📋 Mixture & Allegation Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Mixture & Allegation Part 2 — Quantity Out/Added, Replacement", mins: 30 },
+      { text: "📹 GK: SI Units, Logies, Vitamins, Minerals, Disease", mins: 30 },
+      { text: "📋 Mixture & Allegation Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 17, date: '2026-07-14',
-    title: "Time & Work Part 1",
+    day: 15, date: '2026-07-13',
+    title: "Time & Work",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
     tasks: [
-      { text: "📹 Maths: Time & Work Part 1 — Theory, Basic, MDH Ones, Remaining Work", mins: 35 },
-      { text: "📹 Maths: Time & Work Part 2 — Additional Persons Hired, Efficiency, Work & Wages, Alternate Days", mins: 35 },
-      { text: "📹 GK: Polity Intro, Fundamental Rights, DPSP, Fundamental Duties", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Time & Work Part 1 — Theory, MDH, Remaining Work", mins: 30 },
+      { text: "📹 Maths: Time & Work Part 2 — Efficiency, Wages, Alternate Days", mins: 30 },
+      { text: "📹 GK: Polity Intro, Fundamental Rights, DPSP, Duties", mins: 30 }
     ],
   },
   {
-    day: 18, date: '2026-07-15',
-    title: "Time & Work Part 2",
+    day: 16, date: '2026-07-14',
+    title: "Time & Work",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Time & Work Part 3 — Pipe And Cisterns, Misc", mins: 35 },
-      { text: "📹 GK: Union Executive — President, Amendment, Basic Structure, PM And Cabinet", mins: 30 },
-      { text: "📋 Time & Work Assignment (file from Telegram)", mins: 60 },
-      { text: "📹 GK: GK 50 Most Expected Questions Video (Telegram)", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Time & Work Part 3 — Pipes & Cisterns, Misc", mins: 30 },
+      { text: "📹 GK: Union Executive — President, Amendment, PM & Cabinet", mins: 30 },
+      { text: "📹 GK: 50 Most Expected Questions Video", mins: 30 },
+      { text: "📋 Time & Work Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 19, date: '2026-07-16',
-    title: "Time Speed Distance Part 1 + Time Speed Distance Part 2",
+    day: 17, date: '2026-07-15',
+    title: "TSD + TSD",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
     tasks: [
-      { text: "📹 Maths: TSD Part 1 — Theory", mins: 35 },
-      { text: "📹 Maths: TSD Part 2 — Basic, Average Speed, Relative Speed, Parts Of Distance", mins: 35 },
+      { text: "📹 Maths: TSD Part 1 — Theory", mins: 30 },
+      { text: "📹 Maths: TSD Part 2 — Avg Speed, Relative Speed", mins: 30 },
       { text: "📹 GK: Vice President, Union Legislature, State Government", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 },
-      { text: "📹 Maths: TSD Part 3 — Late/Early Arrival, When Distance Is Constant/Time Is Constant", mins: 35 },
-      { text: "📹 Maths: TSD Part 4 — With/Without Stoppage, Thief And Police/Chase Problems", mins: 35 },
-      { text: "📹 GK: Supreme Court, High Court, Constitutional & Non-Constitutional Bodies", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: TSD Part 3 — Late/Early, Constant Distance/Time", mins: 30 },
+      { text: "📹 Maths: TSD Part 4 — Stoppage, Thief & Police", mins: 30 },
+      { text: "📹 GK: Supreme Court, High Court, Constitutional Bodies", mins: 30 }
     ],
   },
   {
-    day: 20, date: '2026-07-17',
-    title: "🔁 Revision Day — Science + Polity",
-    subjects: ["revision","gk"],
+    day: 18, date: '2026-07-16',
+    title: "🔁 Revise Science + Polity + TSD",
+    subjects: ["revision","math","gk"],
     hasAssignmentFile: false,
     tasks: [
-      { text: "📝 Revise Science Notes (Physics, Chemistry, Biology basics)", mins: 60 },
-      { text: "📝 Revise Polity Notes (Constitution, Rights, Parliament)", mins: 60 },
-      { text: "📝 Self-test: attempt 20 GK questions from memory", mins: 30 }
+      { text: "📝 Revise Science + Polity", mins: 60 },
+      { text: "📹 Maths: TSD Part 5 — Trains: Crossing Man/Platform/Train", mins: 30 },
+      { text: "📹 GK: Indices, Curves, Important Economic Terms", mins: 30 }
     ],
   },
   {
-    day: 21, date: '2026-07-18',
-    title: "Time Speed Distance Part 3 — Trains + Time Speed Distance Part 4 — Boats + Assignment",
+    day: 19, date: '2026-07-17',
+    title: "TSD",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: TSD Part 5 — Trains: Crossing Man/Platform/Another Train, Direction, Length/Relative", mins: 35 },
-      { text: "📹 GK: Indices, Curves, Important Economic Terms", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 },
-      { text: "📹 Maths: TSD Part 6 — Speed Of Boat, Speed Of Stream, Upstream And Downstream", mins: 35 },
+      { text: "📹 Maths: TSD Part 6 — Boats, Stream, Upstream/Downstream", mins: 30 },
       { text: "📹 GK: Environment Chronology", mins: 30 },
-      { text: "📋 Time Speed & Distance Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📋 Time Speed & Distance Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 22, date: '2026-07-19',
+    day: 20, date: '2026-07-18',
     title: "Clock",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Clock Part 1 — Theory, Fundamental", mins: 35 },
-      { text: "📹 Maths: Clock Part 2 — Angle And Time Finding, Hands Coincidence Cases, Misc", mins: 35 },
+      { text: "📹 Maths: Clock Part 1 — Theory, Fundamental", mins: 30 },
+      { text: "📹 Maths: Clock Part 2 — Angle, Hands Coincidence, Misc", mins: 30 },
       { text: "📹 GK: India Location, Himalayan Mountains, Northern Plains", mins: 30 },
-      { text: "📋 Clock Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📋 Clock Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 23, date: '2026-07-20',
+    day: 21, date: '2026-07-19',
     title: "Ages",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Ages Part 1 — Present Age, 1 Variable Type", mins: 35 },
-      { text: "📹 Maths: Ages Part 2 — Comparison Type, Multiple Variable, Future/Past Age, Average Age", mins: 35 },
-      { text: "📹 GK: Peninsular Hills, Coastal Plains, Islands Of India", mins: 30 },
-      { text: "📋 Ages Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Ages Part 1 — Present Age, 1 Variable", mins: 30 },
+      { text: "📹 Maths: Ages Part 2 — Comparison, Future/Past, Avg Age", mins: 30 },
+      { text: "📹 GK: Peninsular Hills, Coastal Plains, Islands", mins: 30 },
+      { text: "📋 Ages Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 24, date: '2026-07-21',
-    title: "Mensuration Part 1",
+    day: 22, date: '2026-07-20',
+    title: "Mensuration",
     subjects: ["math","gk"],
     hasAssignmentFile: false,
     tasks: [
-      { text: "📹 Maths: Mensuration Part 1 — Theory 2D: Triangle, Quadrilateral, Circle, Polygons", mins: 35 },
-      { text: "📹 Maths: Mensuration Part 2 — Theory 3D: Cube, Cuboid, Cylinder, Cone, Sphere; Cost Related, Area & Perimeter", mins: 35 },
-      { text: "📹 GK: Rivers In India", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Mensuration Part 1 — 2D: Triangle, Circle, Polygons", mins: 30 },
+      { text: "📹 Maths: Mensuration Part 2 — 3D: Cube, Cone, Sphere", mins: 30 },
+      { text: "📹 GK: Rivers In India", mins: 30 }
     ],
   },
   {
-    day: 25, date: '2026-07-22',
-    title: "Mensuration Part 2",
+    day: 23, date: '2026-07-21',
+    title: "Mensuration",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Mensuration Part 3 — Shaded Region, Melting/Bend Concepts", mins: 35 },
-      { text: "📹 Maths: Mensuration Part 4 — Area/Volume % Changes, Misc", mins: 35 },
-      { text: "📹 GK: Soils In India, Important Latitudes, Earth Atmosphere + Revise Science", mins: 30 },
-      { text: "📋 Mensuration Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Mensuration Part 3 — Shaded Region, Melting/Bend", mins: 30 },
+      { text: "📹 Maths: Mensuration Part 4 — Area/Volume % Changes", mins: 30 },
+      { text: "📹 GK: Soils, Latitudes, Earth Atmosphere", mins: 30 },
+      { text: "📋 Mensuration Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 26, date: '2026-07-23',
-    title: "🔁 Revision Day — Polity, Economy, Environment, Geography",
-    subjects: ["revision","gk"],
+    day: 24, date: '2026-07-22',
+    title: "🔁 Revise Polity, Economy, Environment, Geography",
+    subjects: ["revision"],
     hasAssignmentFile: false,
     tasks: [
-      { text: "📝 Revise Polity — Important Articles, Parliament, Judiciary", mins: 45 },
-      { text: "📝 Revise Economy — Key terms, Budget basics, Economic organisations", mins: 45 },
-      { text: "📝 Revise Environment & Geography — Chronology, Soils, Rivers", mins: 45 },
-      { text: "📹 Live class: Ages + Mensuration review (if available on Telegram)", mins: 30 }
+      { text: "📝 Revise Polity, Economy, Environment, Geography", mins: 60 }
     ],
   },
   {
-    day: 27, date: '2026-07-24',
+    day: 25, date: '2026-07-23',
     title: "Probability",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Probability Part 1 — Classical Probability, Coins, Dices, Cards", mins: 35 },
-      { text: "📹 Maths: Probability Part 2 — Bag Of Balls, Concept And Conditions", mins: 35 },
-      { text: "📹 GK: Countries & Currencies, Famous Days And Dates", mins: 30 },
-      { text: "📋 Probability Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Probability Part 1 — Coins, Dices, Cards", mins: 30 },
+      { text: "📹 Maths: Probability Part 2 — Bag Of Balls, Conditions", mins: 30 },
+      { text: "📹 GK: Countries & Currencies, Famous Days & Dates", mins: 30 },
+      { text: "📋 Probability Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 28, date: '2026-07-25',
+    day: 26, date: '2026-07-24',
     title: "Statistics",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Statistics Part 1 — Theory, Mean", mins: 35 },
-      { text: "📹 Maths: Statistics Part 2 — Median, Mode", mins: 35 },
-      { text: "📹 Maths: Statistics Part 3 — Measures Of Dispersion, Misc", mins: 35 },
-      { text: "📹 GK: Nicknames Of Famous Personalities, Revolutions, Fathers", mins: 30 },
-      { text: "📋 Statistics Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Maths: Statistics Part 1 — Theory, Mean", mins: 30 },
+      { text: "📹 Maths: Statistics Part 2 — Median, Mode", mins: 30 },
+      { text: "📹 Maths: Statistics Part 3 — Dispersion, Misc", mins: 30 },
+      { text: "📹 GK: Nicknames, Revolutions, Fathers", mins: 30 },
+      { text: "📋 Statistics Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 29, date: '2026-07-26',
+    day: 27, date: '2026-07-25',
     title: "Height & Distance",
     subjects: ["math","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Maths: Height & Distance Part 1 — Theory, Fundamental Trigo Ratios", mins: 35 },
-      { text: "📹 Maths: Height & Distance Part 2 — Angle Of Elevation, Angle Of Depression", mins: 35 },
-      { text: "📹 Maths: Height & Distance Part 3 — Shadow Based, Misc", mins: 35 },
+      { text: "📹 Maths: Height & Distance Part 1 — Trigo Ratios", mins: 30 },
+      { text: "📹 Maths: Height & Distance Part 2 — Elevation, Depression", mins: 30 },
+      { text: "📹 Maths: Height & Distance Part 3 — Shadow, Misc", mins: 30 },
       { text: "📹 GK: Headquarters, Sports", mins: 30 },
-      { text: "📋 Height & Distance Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📋 Height & Distance Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 30, date: '2026-07-27',
-    title: "Analogy + Non-Verbal Reasoning Part 1",
+    day: 28, date: '2026-07-26',
+    title: "Analogy",
+    subjects: ["reasoning","gk"],
+    hasAssignmentFile: true,
+    tasks: [
+      { text: "📹 Reasoning: Analogy Part 1 — Words, Numerical/Alphabets", mins: 30 },
+      { text: "📹 Reasoning: Analogy Part 2 — Advanced, Figure Analogy", mins: 30 },
+      { text: "📹 GK: Revise Sports + Geography", mins: 30 },
+      { text: "📹 GK: Sports Video", mins: 30 },
+      { text: "📋 Analogy Assignment (Telegram file)", mins: 60 }
+    ],
+  },
+  {
+    day: 29, date: '2026-07-27',
+    title: "Non-Verbal",
     subjects: ["reasoning","gk"],
     hasAssignmentFile: false,
     tasks: [
-      { text: "📹 Reasoning: Analogy Part 1 — Theory, Words Related, Numerical/Alphabets Related", mins: 30 },
-      { text: "📹 Reasoning: Analogy Part 2 — Advanced Analogies, Figure Analogy", mins: 30 },
-      { text: "📹 GK: Revise Sports + Geography", mins: 30 },
-      { text: "📋 Analogy Assignment (question practice)", mins: 45 },
-      { text: "📹 GK: Sports Video (Telegram/YouTube)", mins: 30 },
       { text: "📹 Reasoning: Non-Verbal Part 1 — Embedded Figure, Odd One Out", mins: 30 },
-      { text: "📹 Reasoning: Non-Verbal Part 2 — Missing/Completing Figure, Paper Folding/Cutting", mins: 30 },
-      { text: "📹 GK: Awards, First Cabinet Of Free India, Party And Founders", mins: 30 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Reasoning: Non-Verbal Part 2 — Missing Figure, Paper Folding", mins: 30 },
+      { text: "📹 GK: Awards, First Cabinet, Party & Founders", mins: 30 }
     ],
   },
   {
-    day: 31, date: '2026-07-28',
-    title: "Non-Verbal Reasoning Part 2",
+    day: 30, date: '2026-07-28',
+    title: "Non-Verbal",
     subjects: ["reasoning","gk"],
     hasAssignmentFile: true,
     tasks: [
       { text: "📹 Reasoning: Non-Verbal Part 3 — Dot Figure, Counting Figures", mins: 30 },
-      { text: "📹 Reasoning: Non-Verbal Part 4 — Mirror/Water Image Of Figure, Mixed", mins: 30 },
-      { text: "📹 GK: Indian Festivals, Paintings In India, Dances Of India", mins: 30 },
-      { text: "📋 Figure/Non-Verbal Reasoning Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 Reasoning: Non-Verbal Part 4 — Mirror/Water Image, Mixed", mins: 30 },
+      { text: "📹 GK: Indian Festivals, Paintings, Dances", mins: 30 },
+      { text: "📋 Figure / Non-Verbal Reasoning Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 32, date: '2026-07-29',
-    title: "Mirror & Water Image",
+    day: 31, date: '2026-07-29',
+    title: "Mirror And Water Image",
     subjects: ["reasoning","gk"],
     hasAssignmentFile: true,
     tasks: [
       { text: "📹 Reasoning: Mirror And Water Image — Words, Numbers, Figures", mins: 30 },
-      { text: "📹 GK: Research Institutes Of India, Musical Instruments & Persons", mins: 30 },
-      { text: "📋 Mirror & Water Images Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📹 GK: Research Institutes, Musical Instruments & Persons", mins: 30 },
+      { text: "📋 Mirror & Water Images Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 33, date: '2026-07-30',
-    title: "Number & Alphabet Series",
+    day: 32, date: '2026-07-30',
+    title: "Series",
     subjects: ["reasoning","gk"],
-    hasAssignmentFile: false,
+    hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Reasoning: Series Part 1 — Basic Number Series, Mixed/Alternate Patterns, Alphabet Series", mins: 30 },
-      { text: "📹 Reasoning: Series Part 2 — Mixed Alpha+Number, Dictionary, Wrong Term/Missing", mins: 30 },
-      { text: "📹 GK: Folk Music Of India, Motto Of Forces", mins: 30 },
-      { text: "📋 Series Assignment (question practice)", mins: 45 },
-      { text: "📹 GK: Complete Defence, Static + Current Affairs Video (Telegram)", mins: 30 }
+      { text: "📹 Reasoning: Series Part 1 — Number, Alternate, Alphabet", mins: 30 },
+      { text: "📹 Reasoning: Series Part 2 — Mixed, Dictionary, Wrong/Missing", mins: 30 },
+      { text: "📹 GK: Folk Music, Motto Of Forces", mins: 30 },
+      { text: "📹 GK: Complete Defence, Static + Current Affairs Video", mins: 30 },
+      { text: "📋 Series Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 34, date: '2026-07-31',
-    title: "Blood Relation + Direction",
+    day: 33, date: '2026-07-31',
+    title: "Blood Relation",
     subjects: ["reasoning","gk"],
-    hasAssignmentFile: false,
+    hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Reasoning: Blood Relation — Simple Family Tree, Multiple Generations, Coded Relation", mins: 30 },
+      { text: "📹 Reasoning: Blood Relation — Family Tree, Generations, Coded", mins: 30 },
       { text: "📹 GK: Cities & Towns Nicknames, Minerals", mins: 30 },
-      { text: "📋 Blood Relation Assignment (question practice)", mins: 45 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 },
-      { text: "📹 Reasoning: Direction — Basic Distance And Direction, Angle Based, Shadow Based, Shortest Distance", mins: 30 },
+      { text: "📋 Blood Relation Assignment (Telegram file)", mins: 60 }
+    ],
+  },
+  {
+    day: 34, date: '2026-08-01',
+    title: "Direction",
+    subjects: ["reasoning","gk"],
+    hasAssignmentFile: true,
+    tasks: [
+      { text: "📹 Reasoning: Direction — Distance, Angle, Shadow, Shortest Path", mins: 30 },
       { text: "📹 GK: Defence Topics + Sports", mins: 30 },
-      { text: "📋 Direction Assignment (question practice)", mins: 45 },
-      { text: "📄 Blueprint Notes + Question Practice", mins: 30 }
+      { text: "📋 Direction Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 35, date: '2026-08-01',
-    title: "Coding-Decoding + Ranking & Order",
-    subjects: ["reasoning"],
-    hasAssignmentFile: false,
-    tasks: [
-      { text: "📹 Reasoning: Coding Decoding Part 1 — Letter Coding, Number Coding, Mixed Coding", mins: 30 },
-      { text: "📹 Reasoning: Coding Decoding Part 2 — Statement Coding, Message Coding", mins: 30 },
-      { text: "📋 Coding Decoding Assignment (question practice)", mins: 45 },
-      { text: "📄 Question Practice", mins: 30 },
-      { text: "📹 Reasoning: Ranking/Order Part 1 — Simple Ranking, Both Side Rank, Rank Interchange", mins: 30 },
-      { text: "📹 Reasoning: Ranking/Order Part 2 — Comparison Type, Ordering", mins: 30 },
-      { text: "📋 Ranking/Order Assignment (question practice)", mins: 45 },
-      { text: "📹 GK: Awards Video (Telegram/YouTube)", mins: 30 }
-    ],
-  },
-  {
-    day: 36, date: '2026-08-02',
-    title: "Dice & Cube + Venn Diagram",
+    day: 35, date: '2026-08-02',
+    title: "Coding Decoding",
     subjects: ["reasoning"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Reasoning: Dice And Cube — Faces Identification, Open Dice Folding", mins: 30 },
-      { text: "📋 Dice & Cube Assignment (question practice)", mins: 45 },
-      { text: "📄 Question Practice", mins: 30 },
-      { text: "📹 Reasoning: Venn Diagram — Simple Intersection, Categorical Type, Numerical Type", mins: 30 },
-      { text: "📋 Venn Diagram Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Question Practice", mins: 30 }
+      { text: "📹 Reasoning: Coding Decoding Part 1 — Letter, Number, Mixed", mins: 30 },
+      { text: "📹 Reasoning: Coding Decoding Part 2 — Statement, Message", mins: 30 },
+      { text: "📋 Coding Decoding Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 37, date: '2026-08-03',
+    day: 36, date: '2026-08-03',
+    title: "Ranking/Order",
+    subjects: ["reasoning","gk"],
+    hasAssignmentFile: true,
+    tasks: [
+      { text: "📹 Reasoning: Ranking/Order Part 1 — Position, Both-Side Rank", mins: 30 },
+      { text: "📹 Reasoning: Ranking/Order Part 2 — Comparison, Ordering", mins: 30 },
+      { text: "📹 GK: Awards Video", mins: 30 },
+      { text: "📋 Ranking / Order Assignment (Telegram file)", mins: 60 }
+    ],
+  },
+  {
+    day: 37, date: '2026-08-04',
+    title: "Dice And Cube + Venn Diagram",
+    subjects: ["reasoning"],
+    hasAssignmentFile: true,
+    tasks: [
+      { text: "📹 Reasoning: Dice And Cube — Faces, Open Dice Folding", mins: 30 },
+      { text: "📋 Dice & Cube Assignment (Telegram file)", mins: 60 },
+      { text: "📹 Reasoning: Venn Diagram — Intersection, Categorical, Numerical", mins: 30 },
+      { text: "📋 Venn Diagram Assignment (Telegram file)", mins: 60 }
+    ],
+  },
+  {
+    day: 38, date: '2026-08-05',
     title: "Syllogism",
-    subjects: ["reasoning"],
+    subjects: ["reasoning","gk"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Reasoning: Syllogism Part 1 — Theory, Different Statements (A, E, I, O)", mins: 30 },
-      { text: "📹 Reasoning: Syllogism Part 2 — Definite And Possible Cases, Either-Or, Can-Be", mins: 30 },
-      { text: "📋 Syllogism Assignment (file from Telegram)", mins: 60 },
-      { text: "📹 GK: 100 Most Expected Current Affairs Video (Telegram)", mins: 30 }
+      { text: "📹 Reasoning: Syllogism Part 1 — Theory, A/E/I/O Statements", mins: 30 },
+      { text: "📹 Reasoning: Syllogism Part 2 — Definite/Possible, Either-Or", mins: 30 },
+      { text: "📹 GK: 100 Most Expected Current Affairs Video", mins: 30 },
+      { text: "📋 Syllogism Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 38, date: '2026-08-04',
+    day: 39, date: '2026-08-06',
     title: "Statement & Conclusion + Jumbled",
     subjects: ["reasoning"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Reasoning: Statement & Conclusion — Statement Conclusion, Assumption, Data Sufficiency", mins: 30 },
-      { text: "📋 Statement & Conclusion Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Question Practice", mins: 30 },
-      { text: "📹 Reasoning: Jumbled — Basic, Group Jumbles (Odd One Out), Number Position Codes, Series", mins: 30 },
-      { text: "📋 Jumbled Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Question Practice", mins: 30 }
+      { text: "📹 Reasoning: Statement & Conclusion — Assumption, Data Sufficiency", mins: 30 },
+      { text: "📋 Statement & Conclusion Assignment (Telegram file)", mins: 60 },
+      { text: "📹 Reasoning: Jumbled — Group Jumbles, Number Codes, Series", mins: 30 },
+      { text: "📋 Jumbled Assignment (Telegram file)", mins: 60 }
     ],
   },
   {
-    day: 39, date: '2026-08-05',
+    day: 40, date: '2026-08-07',
     title: "Calendar",
     subjects: ["reasoning"],
     hasAssignmentFile: true,
     tasks: [
-      { text: "📹 Reasoning: Calendar — Day-Date Relation, Finding Date/Day, Repetition/Leap Year", mins: 30 },
-      { text: "📋 Calendar Assignment (file from Telegram)", mins: 60 },
-      { text: "📄 Question Practice", mins: 30 }
+      { text: "📹 Reasoning: Calendar — Day-Date, Find Date/Day, Leap Year", mins: 30 },
+      { text: "📋 Calendar Assignment (Telegram file)", mins: 60 }
     ],
   }
 ];
+
 
 
 // English is a parallel daily track (36 videos × 27 min each)

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CheckCircle2, Circle, AlertTriangle, Calendar, Trophy, Clock, ChevronDown, ChevronUp } from 'lucide-react';
-import { STUDY_PLAN, SUBJECTS, ENGLISH_VIDEOS, START_DATE } from '../data/studyPlan';
+import { STUDY_PLAN, SUBJECTS, ENGLISH_VIDEOS } from '../data/studyPlan';
 import { getDayNumber, getTodayString, formatDate, getDaysUntilExam, totalMins } from '../utils/dateUtils';
 import { useStorage } from '../hooks/useStorage';
 import DailyTimer from './DailyTimer';
@@ -229,25 +229,6 @@ export default function DailyPlanner() {
         </div>
       </div>
 
-      {/* Time-block strategy banner */}
-      <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-xl p-3 mb-4">
-        <p className="text-xs font-semibold text-indigo-300 mb-1.5">⏰ Daily Time-Block Plan (5h total)</p>
-        <div className="grid grid-cols-3 gap-2 text-xs">
-          <div>
-            <span className="text-indigo-400 font-semibold">Morning · 2h</span>
-            <p className="text-slate-400 mt-0.5">New 📹 Maths/Reasoning videos</p>
-          </div>
-          <div>
-            <span className="text-indigo-400 font-semibold">Evening · 2h</span>
-            <p className="text-slate-400 mt-0.5">Remaining videos + 📋 assignment</p>
-          </div>
-          <div>
-            <span className="text-indigo-400 font-semibold">Office · 1h</span>
-            <p className="text-slate-400 mt-0.5">Revision / 📘 English / 🌍 GK only — no new heavy topics</p>
-          </div>
-        </div>
-      </div>
-
       {/* Pending warning */}
       {pendingDays.length > 0 && (
         <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 mb-4 flex items-center gap-3">
@@ -255,13 +236,6 @@ export default function DailyPlanner() {
           <p className="text-amber-300 text-sm font-medium">
             {pendingDays.length} incomplete past day{pendingDays.length > 1 ? 's' : ''} — don't forget these!
           </p>
-        </div>
-      )}
-
-      {/* Before plan starts: gentle note, but still show all days below */}
-      {todayDayNum < 1 && (
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-3 mb-4 text-center">
-          <p className="text-sm text-slate-300">📅 Plan starts {formatDate(START_DATE)} — but you can start any day's target right now!</p>
         </div>
       )}
 
@@ -285,6 +259,9 @@ export default function DailyPlanner() {
             <SectionLabel icon={<Calendar size={12} />} text={`Today — ${formatDate(today)}`} />
             <DailyTimer totalMins={dayTotalMins} doneMins={dayDoneMins} dayNum={todayDayNum} />
             {renderDayCard(todayPlan, true, false)}
+            <p className="text-xs text-slate-500 mt-2 px-1 leading-relaxed">
+              💡 <span className="text-slate-400">Suggested split:</span> new 📹 Maths/Reasoning videos in the morning · remaining videos + 📋 assignment in the evening · 📘 English / 🌍 GK / revision during your office hour.
+            </p>
           </section>
         );
       })()}
