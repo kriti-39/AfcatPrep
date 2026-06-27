@@ -28,7 +28,8 @@ export default function PYQQuiz() {
     return PYQ.filter(q => {
       if (q.subject !== subject) return false;
       if (topic !== 'All Topics' && q.topic !== topic) return false;
-      if (year !== 'All Years' && q.year !== Number(year)) return false;
+      if (year === 'Practice' && q.tag !== 'Practice') return false;
+      else if (year !== 'All Years' && year !== 'Practice' && q.year !== Number(year)) return false;
       return true;
     });
   }, [subject, topic, year]);
@@ -153,7 +154,11 @@ export default function PYQQuiz() {
         <div className="flex items-center gap-2 mb-3 flex-wrap">
           <span className="text-xs text-slate-500">{idx+1}/{questions.length}</span>
           <span className={`text-xs px-2 py-0.5 rounded-full ${c.badge}`}>{q.topic}</span>
-          <span className="text-xs bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">AFCAT {q.year}</span>
+          {q.tag === 'PYQ' ? (
+            <span className="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded-full">✓ Real PYQ {q.year}</span>
+          ) : (
+            <span className="text-xs bg-orange-500/15 text-orange-300 px-2 py-0.5 rounded-full">Practice (AFCAT-pattern)</span>
+          )}
           {attempts[q.id] !== undefined && (
             attempts[q.id] === q.ans
               ? <span className="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">✓ Correct</span>
