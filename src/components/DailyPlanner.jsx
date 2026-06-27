@@ -24,8 +24,9 @@ export default function DailyPlanner() {
   const today = getTodayString();
   const todayDayNum = getDayNumber(today);
   const daysLeft = getDaysUntilExam(); // pure calendar countdown — unaffected by completion pace
-  const [completedTasks, setCompletedTasks] = useStorage('afcat_completed', {});
+  const [completedTasks, setCompletedTasks] = useStorage('afcat_completed_v2', {});
   const [expanded, setExpanded] = useState({});
+  const PLAN_LENGTH = STUDY_PLAN.length;
 
   const todayPlan = STUDY_PLAN.find(d => d.day === todayDayNum);
 
@@ -184,8 +185,8 @@ export default function DailyPlanner() {
         <div>
           <p className="text-xs text-slate-500 mb-0.5">Plan Day</p>
           <p className="text-2xl font-bold text-white leading-none">
-            {todayDayNum > 0 && todayDayNum <= 50 ? todayDayNum : '-'}
-            <span className="text-sm font-normal text-slate-500"> / 50</span>
+            {todayDayNum > 0 && todayDayNum <= PLAN_LENGTH ? todayDayNum : "-"}
+            <span className="text-sm font-normal text-slate-500"> / {PLAN_LENGTH}</span>
           </p>
         </div>
         <div className="h-8 w-px bg-slate-700" />
@@ -228,6 +229,25 @@ export default function DailyPlanner() {
         </div>
       </div>
 
+      {/* Time-block strategy banner */}
+      <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-xl p-3 mb-4">
+        <p className="text-xs font-semibold text-indigo-300 mb-1.5">⏰ Daily Time-Block Plan (5h total)</p>
+        <div className="grid grid-cols-3 gap-2 text-xs">
+          <div>
+            <span className="text-indigo-400 font-semibold">Morning · 2h</span>
+            <p className="text-slate-400 mt-0.5">New 📹 Maths/Reasoning videos</p>
+          </div>
+          <div>
+            <span className="text-indigo-400 font-semibold">Evening · 2h</span>
+            <p className="text-slate-400 mt-0.5">Remaining videos + 📋 assignment</p>
+          </div>
+          <div>
+            <span className="text-indigo-400 font-semibold">Office · 1h</span>
+            <p className="text-slate-400 mt-0.5">Revision / 📘 English / 🌍 GK only — no new heavy topics</p>
+          </div>
+        </div>
+      </div>
+
       {/* Pending warning */}
       {pendingDays.length > 0 && (
         <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 mb-4 flex items-center gap-3">
@@ -238,7 +258,7 @@ export default function DailyPlanner() {
         </div>
       )}
 
-      {todayDayNum >= 1 && todayDayNum <= 50 ? (
+      {todayDayNum >= 1 && todayDayNum <= PLAN_LENGTH ? (
         <>
           {/* ── TODAY ── */}
           {todayPlan && (() => {
@@ -265,7 +285,7 @@ export default function DailyPlanner() {
 
           {/* ── FULL 50-DAY SCHEDULE ── */}
           <section>
-            <SectionLabel icon={<ChevronDown size={12} />} text={`All 50 Days — do at your own pace`} />
+            <SectionLabel icon={<ChevronDown size={12} />} text={`All ${PLAN_LENGTH} Days — do at your own pace`} />
             {STUDY_PLAN.filter(d => d.day !== todayDayNum && !pendingDays.find(p => p.day === d.day))
               .map(d => renderDayCard(d, false, false))}
           </section>
@@ -273,12 +293,12 @@ export default function DailyPlanner() {
       ) : todayDayNum < 1 ? (
         <div className="text-center py-16 text-slate-500">
           <Trophy size={40} className="mx-auto mb-3 opacity-20" />
-          <p>Plan starts June 9, 2026</p>
+          <p>Plan starts June 29, 2026</p>
         </div>
       ) : (
         <div className="text-center py-16">
           <Trophy size={48} className="mx-auto mb-3 text-yellow-400" />
-          <p className="text-white text-2xl font-bold">50 Days Complete! 🎉</p>
+          <p className="text-white text-2xl font-bold">{PLAN_LENGTH} Days Complete! 🎉</p>
           <p className="text-slate-400 mt-2">Go crush AFCAT 2!</p>
         </div>
       )}
