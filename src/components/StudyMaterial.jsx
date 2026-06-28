@@ -125,6 +125,70 @@ const MATERIAL = {
           'International: G20, SCO, QUAD summits and outcomes',
           'Environment: COP decisions, India\'s climate targets',
         ]
+      },
+      {
+        heading: '📰 Current Affairs 2026 — Defence & Operations',
+        items: [
+          '**Operation Urja Suraksha** — Indian Navy operation to protect India\'s energy supply area (Strait of Hormuz)',
+          '**Operation Sankalp** — Indian Navy, launched 2019, safeguards Indian vessels (Gulf of Oman & Strait of Hormuz)',
+          '**Operation Epic Fury** — Joint USA + Israel operation against Iran, to assassinate Ali Khamenei',
+          '**Operation Freedom Shield** — Joint military exercise between USA and South Korea',
+          '**Vayu Baan** — Air-launched drone by Indian Air Force; 1st helicopter-dropped unmanned aerial system (30 m, 50 km range)',
+          '**Avataar** — Amphibious vehicle for Autonomous Tactical Aerial and Aquatic Reconnaissance (air + underwater drone), developed by AquaAirX',
+          '**MAHASAGAR** — Mutual and Holistic Advancement for Security And Growth Across Region',
+          '**INS Trikand** — Visited Maputo (capital & largest port city of Mozambique, East Africa) under MAHASAGAR',
+          '**GRSE (Garden Reach Shipbuilders & Engineers Ltd.)** — Delivered survey vessel "Sanshodhak" (after Sandhayak, Nirdeshak, Ikshak)',
+          '**Iran** withdrew from FIFA',
+        ]
+      },
+      {
+        heading: '📰 Current Affairs 2026 — Exercises & International',
+        items: [
+          '**Sea Dragon 2026** — Multilateral naval exercise; Australia, Japan, New Zealand, India at Guam (USA)',
+          '**Lamitiye** — 11th edition; Army, Air Force, Navy; between India and Seychelles',
+          '**FATF (Financial Action Task Force)** — Grey list additions: Kuwait, Monaco, Guinea. Black list: Iran, North Korea',
+          '**Chile** — 1st country in the Americas & 2nd globally verified by WHO for eliminating Leprosy',
+          '**ISA (International Solar Alliance)** — HQ at Gurugram, Haryana; Romania submitted 1st framework agreement. Launched by PM India + President France at COP21 Paris Climate Summit',
+          '**Nagoya Protocol** — Under Convention on Biological Diversity; governs access & benefit-sharing of genetic resources. India submitted 1st national report (2026) via Ministry of Environment, Forest & Climate Change / National Biodiversity Authority',
+        ]
+      },
+      {
+        heading: '📰 Current Affairs 2026 — People & Appointments',
+        items: [
+          '**New PM of Nepal** — Balendra Shah',
+          '**New Supreme Leader of Iran** — Mojtaba Khamenei',
+          '**Former Chairman & MD of Raymond** — Vijaypat Singhania',
+          '**CEO of NITI Aayog (2026)** — Nidhi Chhibber',
+          '**UCC (Uniform Civil Code)** — Adopted by Uttarakhand',
+          '**Bhupathiraju Anmish Varma** — Completed all volcanic summit expedition in 92 days (last: Mount Sidley, Antarctica)',
+        ]
+      },
+      {
+        heading: '📰 Current Affairs 2026 — Sports & Cricket',
+        items: [
+          '**ICC Men\'s T20 World Cup** — Co-hosted by India & Sri Lanka; India won on home soil beating New Zealand (3rd time)',
+          '**Sanju Samson** — Player of the Tournament (T20 WC)',
+          '**Jasprit Bumrah & Varun Chakaravarthy** — Joint highest wicket-takers (T20 WC)',
+          '**Col CK Nayudu Lifetime Achievement (Men)** — Rahul Dravid & Roger Binny',
+          '**BCCI Lifetime Achievement (Women)** — Mithali Raj',
+          '**Polly Umrigar Award (Best Intl Cricketer, Men)** — Shubman Gill',
+          '**Best International Cricketer (Women)** — Smriti Mandhana',
+        ]
+      },
+      {
+        heading: '📰 Current Affairs 2026 — Awards, Days & Misc',
+        items: [
+          '**Jnanpith Award** — Tamil poet & lyricist Vairamuthu',
+          '**Women Empowerment Award (UK House of Commons)** — Rituparna Sengupta',
+          '**World Wildlife Day (3 March)** — Theme: "Medicinal & Aromatic Plants: Conserving Health, Heritage and Livelihoods"',
+          '**World Water Day (22 March)** — Theme: "Water and Gender"',
+          '**World TB Day (24 March)** — Theme: "Yes! We Can End TB!"',
+          '**ISRO** — Tested CE20 cryogenic engine at Mahendragiri, Tamil Nadu',
+          '**Khelo India Tribal Games (Inaugural)** — Chhattisgarh; Mascot: Morveer; Demo sports: Mallakhamb & Kabaddi',
+          '**Indian Orchid Festival** — Organised by ICAR in Sikkim; theme "Orchid for Beauty and Prosperity"',
+          '**9th Santhal Conference** — Held in Darjeeling, WB. Ol Chiki script (Santhal language) invented by Pandit Raghunath Murmu',
+          '**Assam GI Exports** — 1st consignment of GI-tagged Karbi Ginger to London (Singhasan Hills, jhum & tila farming); Joha Rice to Italy & UK (facilitated by APEDA)',
+        ]
       }
     ]
   },
