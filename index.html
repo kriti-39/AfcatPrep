@@ -4,16 +4,26 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>AFCAT 50-Day Blueprint</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#142136" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="AFCAT Prep" />
+<link rel="icon" type="image/svg+xml" href="/icon.svg" />
+<link rel="apple-touch-icon" href="/icon.svg" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
-  /* Cards + hairlines. Accent blue, green = done, neutral tags. */
+  /* App shell: sticky top bar + slide-out menu (progress, facts, resources); clean day list as main */
   :root{
     --bg:#eef1f8; --surface:#ffffff; --surface-2:#f6f8fd;
     --ink:#15233c; --muted:#5a6b86; --line:#dde3ef;
     --accent:#1f5fe0; --accent-soft:#e4ecfd;
     --done:#1a8a5a; --done-soft:#e0f3ea;
     --gold:#9a7420;
-    --shadow:0 1px 2px rgba(20,35,60,.05),0 6px 20px rgba(20,35,60,.06);
+    --shadow:0 1px 2px rgba(20,35,60,.05),0 10px 30px rgba(20,35,60,.10);
     --head:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
     --body:"Inter",ui-sans-serif,system-ui,sans-serif;
   }
@@ -23,7 +33,7 @@
     --accent:#6aa6ff; --accent-soft:#1d3a6b;
     --done:#2fcf8c; --done-soft:#123a2b;
     --gold:#d6ab57;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px rgba(0,0,0,.4);
     color-scheme:dark;
   }}
   :root[data-theme="dark"]{
@@ -32,70 +42,75 @@
     --accent:#6aa6ff; --accent-soft:#1d3a6b;
     --done:#2fcf8c; --done-soft:#123a2b;
     --gold:#d6ab57;
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px rgba(0,0,0,.4);
     color-scheme:dark;
   }
   *{box-sizing:border-box}
+  html,body{margin:0}
   body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:820px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
 
-  /* Hero */
-  .hero{margin-top:calc(-1 * env(safe-area-inset-top,0px));padding-top:calc(env(safe-area-inset-top,0px) + 32px);padding-bottom:20px}
-  .brandmark{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-  .brandmark svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-  .eyebrow{font-family:var(--head);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
-  h1{font-family:var(--head);font-weight:700;font-size:clamp(1.9rem,6vw,2.7rem);line-height:1.05;margin:.35rem 0 .5rem;text-wrap:balance;letter-spacing:-.015em}
-  .lede{color:var(--muted);max-width:60ch;font-size:.98rem;margin:0}
-  .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-  .fact{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:.8rem;color:var(--muted);box-shadow:var(--shadow)}
-  .fact b{color:var(--ink);font-variant-numeric:tabular-nums}
+  /* Top app bar */
+  .appbar{position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+  .appbar-in{display:flex;align-items:center;gap:10px;height:54px;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(10px,env(safe-area-inset-right,0px))}
+  .brand{display:flex;align-items:center;gap:9px;font-family:var(--head);font-weight:700;font-size:1.02rem;letter-spacing:-.01em}
+  .brand .mk{width:26px;height:26px;border-radius:8px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;flex:none}
+  .brand .mk svg{width:15px;height:15px;stroke:var(--accent);fill:none;stroke-width:2.7;stroke-linecap:round;stroke-linejoin:round}
+  .bar-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .minipct{font-family:var(--head);font-weight:700;font-size:.88rem;color:var(--accent);font-variant-numeric:tabular-nums}
+  .menu-btn{width:42px;height:42px;border:1px solid var(--line);border-radius:11px;background:var(--surface-2);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+  .menu-btn:hover{border-color:var(--accent)}
+  .menu-btn svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}
+  .topline{height:3px;background:var(--surface-2)}
+  .topline .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--done));transition:width .4s ease}
 
-  /* Sticky progress card */
-  .bar-wrap{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);padding:12px 0;margin-bottom:8px}
-  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
-  .bar-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:15px 17px;box-shadow:var(--shadow)}
-  .bar-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
-  .bar-top .n{font-family:var(--head);font-weight:700;font-size:1.05rem}
-  .bar-top .pct{font-family:var(--head);font-weight:700;font-size:1.05rem;color:var(--accent);font-variant-numeric:tabular-nums}
-  .track{height:9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);margin-top:10px;overflow:hidden}
-  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--done));border-radius:999px;transition:width .4s ease}
-  .bar-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:11px;flex-wrap:wrap}
-  .hint{font-size:.79rem;color:var(--muted)}
-  .hint b{color:var(--ink);font-variant-numeric:tabular-nums}
-  .reset{font-family:var(--body);font-size:.78rem;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 13px;cursor:pointer}
+  /* Slide-out menu */
+  .overlay{position:fixed;inset:0;background:rgba(5,10,22,.5);opacity:0;visibility:hidden;transition:opacity .2s;z-index:40}
+  .overlay.open{opacity:1;visibility:visible}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(340px,87vw);background:var(--surface);border-left:1px solid var(--line);box-shadow:var(--shadow);transform:translateX(100%);transition:transform .25s ease;z-index:50;display:flex;flex-direction:column;overflow-y:auto;padding-top:env(safe-area-inset-top,0px)}
+  .drawer.open{transform:translateX(0)}
+  .drawer-head{display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--surface)}
+  .drawer-head b{font-family:var(--head);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .close{width:34px;height:34px;border:1px solid var(--line);border-radius:9px;background:var(--surface-2);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+  .close svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round}
+  .m-sec{padding:18px 16px;border-bottom:1px solid var(--line)}
+  .m-sec h3{font-family:var(--head);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 13px;font-weight:600}
+  .m-pct{font-family:var(--head);font-weight:700;font-size:2.6rem;line-height:1;color:var(--accent);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .m-counts{font-size:.83rem;color:var(--muted);margin-top:9px}
+  .m-counts b{color:var(--ink);font-variant-numeric:tabular-nums}
+  .m-track{height:8px;border:1px solid var(--line);border-radius:999px;background:var(--surface-2);margin-top:13px;overflow:hidden}
+  .m-track .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--done));border-radius:999px;transition:width .4s ease}
+  .reset{margin-top:15px;font-family:var(--body);font-size:.8rem;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:6px 15px;cursor:pointer}
   .reset:hover{color:var(--ink);border-color:var(--muted)}
+  .facts{display:flex;flex-direction:column;gap:9px}
+  .facts .row{display:flex;justify-content:space-between;align-items:baseline;font-size:.86rem;color:var(--muted)}
+  .facts .row b{color:var(--ink);font-family:var(--head);font-variant-numeric:tabular-nums}
+  .hub-list{display:flex;flex-direction:column}
+  .hub-list a{display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:.88rem;font-weight:500}
+  .hub-list a:last-child{border-bottom:0}
+  .hub-list a span{color:var(--muted);font-size:.72rem;font-weight:400;white-space:nowrap}
+  .hub-list a:hover{color:var(--accent)}
 
-  /* Resource hub */
-  .hub{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:17px;box-shadow:var(--shadow);margin-bottom:14px}
-  .hub h2{font-family:var(--head);font-size:1rem;margin:0 0 4px}
-  .hub p{margin:0 0 13px;color:var(--muted);font-size:.86rem;max-width:64ch}
-  .hub p b{color:var(--ink)}
-  .hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
-  .hub a{display:block;text-decoration:none;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.83rem;font-weight:500;transition:border-color .15s,transform .15s}
-  .hub a:hover{border-color:var(--accent);transform:translateY(-1px)}
-  .hub a span{display:block;color:var(--muted);font-size:.72rem;font-weight:400;margin-top:2px}
+  /* Main */
+  .wrap{max-width:820px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 calc(56px + env(safe-area-inset-bottom,0px))}
+  .intro{padding:22px 0 4px}
+  .intro h1{font-family:var(--head);font-weight:700;font-size:clamp(1.55rem,5.2vw,2.1rem);margin:0;letter-spacing:-.015em}
+  .intro .sub{color:var(--muted);font-size:.85rem;margin:6px 0 0}
 
-  .note{background:var(--accent-soft);border:1px solid var(--line);border-radius:14px;padding:13px 15px;font-size:.86rem;color:var(--ink);margin-bottom:18px;max-width:none}
-  .note b{font-weight:600}
-
-  /* Phase */
-  .phase{margin-top:28px}
+  .phase{margin-top:26px}
   .phase-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
   .phase-head .k{font-family:var(--head);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:600}
-  .phase-head h2{font-family:var(--head);font-size:1.2rem;margin:0;font-weight:700;letter-spacing:-.01em}
+  .phase-head h2{font-family:var(--head);font-size:1.18rem;margin:0;font-weight:700;letter-spacing:-.01em}
   .phase-head .rng{margin-left:auto;font-size:.76rem;color:var(--muted);white-space:nowrap}
 
-  /* Day card */
   .day{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:15px 17px;box-shadow:var(--shadow);margin-bottom:12px}
   .day.done{border-color:var(--done)}
-  .day-head{display:flex;align-items:center;gap:13px;margin-bottom:11px}
+  .day-head{display:flex;align-items:center;gap:13px;margin-bottom:11px;cursor:pointer;user-select:none}
   .daynum{flex:none;width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--head);font-weight:700;line-height:1}
   .daynum small{font-size:.5rem;letter-spacing:.1em;font-weight:600;opacity:.75}
   .daynum b{font-size:1.15rem;font-variant-numeric:tabular-nums}
   .day.done .daynum{background:var(--done-soft);color:var(--done)}
   .day-title{font-family:var(--head);font-weight:600;font-size:1.05rem;margin:0;letter-spacing:-.01em}
   .day-check{margin-left:auto;flex:none;font-size:.74rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
-  .day-head{cursor:pointer;user-select:none}
   .chev{flex:none;margin-left:2px;width:28px;height:28px;border:0;background:none;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;border-radius:8px}
   .chev:hover{background:var(--surface-2);color:var(--ink)}
   .chev svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s ease}
@@ -115,65 +130,74 @@
   .t-text{font-size:.94rem;line-height:1.45;cursor:pointer}
   li.task.on .t-text{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
   .t-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:7px}
-  /* neutral tag — one quiet style for every subject */
   .tag{font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:3px 9px;border-radius:999px;color:var(--muted);background:transparent;border:1px solid var(--line);white-space:nowrap}
   .res{display:inline-flex;align-items:center;gap:5px;font-size:.78rem;font-weight:600;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 11px}
-  .res svg{width:11px;height:11px;fill:currentColor}
   .res.lesson{color:var(--accent)}
   .res.lesson:hover{border-color:var(--accent);background:var(--accent-soft)}
   .res.pyq{color:var(--gold)}
   .res.pyq:hover{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 13%,transparent)}
 
   footer{margin-top:30px;text-align:center;color:var(--muted);font-size:.78rem;line-height:1.6}
-  footer a{color:var(--accent)}
-  @media (max-width:420px){.daynum{width:42px;height:42px}}
 </style>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
-
-<style>html,body{margin:0}</style>
 </head>
 <body>
-<div class="wrap">
-  <header class="hero">
-    <div class="brandmark" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="4,12.5 10,18 20,6"/></svg></div>
-    <div class="eyebrow">AFCAT 1 / 2027</div>
-    <h1>50-Day Blueprint</h1>
-    <div class="facts">
-      <span class="fact">Exam <b>31 Jan</b></span>
-      <span class="fact"><b>100</b> questions</span>
-      <span class="fact"><b>300</b> marks</span>
-      <span class="fact">Marking <b>+3 / −1</b></span>
-      <span class="fact"><b>2 hours</b></span>
+  <header class="appbar">
+    <div class="appbar-in">
+      <div class="brand">
+        <span class="mk"><svg viewBox="0 0 24 24"><polyline points="4,12.5 10,18 20,6"/></svg></span>
+        AFCAT Prep
+      </div>
+      <div class="bar-right">
+        <span class="minipct"><span class="js-pct">0</span>%</span>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
     </div>
+    <div class="topline"><div class="fill js-fill"></div></div>
   </header>
 
-  <div class="bar-wrap">
-    <div class="bar-card">
-      <div class="bar-top">
-        <span class="n">Progress</span>
-        <span class="pct"><span id="pctN">0</span>%</span>
-      </div>
-      <div class="track"><div class="fill" id="fill"></div></div>
-      <div class="bar-actions">
-        <span class="hint"><b id="doneN">0</b> of <span id="totN">0</span> topics · <b id="daysN">0</b>/50 days complete</span>
-        <button class="reset" id="reset">Reset all</button>
-      </div>
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <b>Menu</b>
+      <button class="close" id="closeBtn" aria-label="Close menu"><svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
     </div>
+    <section class="m-sec">
+      <h3>Overall progress</h3>
+      <div class="m-pct"><span class="js-pct">0</span>%</div>
+      <div class="m-track"><div class="fill js-fill"></div></div>
+      <div class="m-counts"><b class="js-done">0</b> of <span class="js-tot">0</span> topics · <b class="js-days">0</b>/50 days complete</div>
+      <button class="reset" id="reset">Reset all progress</button>
+    </section>
+    <section class="m-sec">
+      <h3>Exam</h3>
+      <div class="facts">
+        <div class="row"><span>Date</span><b>31 Jan 2027</b></div>
+        <div class="row"><span>Questions</span><b>100</b></div>
+        <div class="row"><span>Marks</span><b>300</b></div>
+        <div class="row"><span>Marking</span><b>+3 / −1</b></div>
+        <div class="row"><span>Duration</span><b>2 hours</b></div>
+      </div>
+    </section>
+    <section class="m-sec">
+      <h3>Free resources</h3>
+      <div class="hub-list" id="hub"></div>
+    </section>
+    <section class="m-sec" style="border-bottom:0">
+      <h3>About</h3>
+      <div class="m-counts" style="margin-top:0">Follows the Insight SSB 50-day blueprint (Vaishalli Ma'am). Each topic links a free lesson + topic-wise previous-year questions. Progress saves on this device.</div>
+    </section>
+  </aside>
+
+  <div class="wrap">
+    <div class="intro">
+      <h1>50-Day Blueprint</h1>
+      <p class="sub">Tap a day to open it · tick topics as you finish · the next day opens automatically.</p>
+    </div>
+    <div id="plan"></div>
+    <footer>Lessons, notes &amp; live classes are on Insight SSB's YouTube &amp; Telegram. Good luck. ✈️</footer>
   </div>
-
-  <section class="hub">
-    <h2>Free resources</h2>
-    <p>All free. Each topic below has a <b>Lesson</b> (video) and a <b>PYQ</b> (previous-year questions) link — both live searches, so results stay fresh. Pick one teacher per subject and stick with them. Links open in a new tab.</p>
-    <div class="hub-grid" id="hub"></div>
-  </section>
-
-  <div id="plan"></div>
-
-  <footer>
-    Free notes, assignments & live classes for each day are on Insight SSB's YouTube & Telegram. Good luck. ✈️
-  </footer>
-</div>
 
 <script>
 const y = q => "https://www.youtube.com/results?search_query="+encodeURIComponent(q);
@@ -182,7 +206,6 @@ const SYLL="https://career.aglasem.com/defence/afcat/syllabus";
 const MOCK="https://www.pw.live/defence/exams/afcat-mock-tests";
 const INSIGHT=y("Insight SSB AFCAT blueprint");
 
-// topic-wise previous-year-question search, built from the task's own topic name
 function pyqURL(task){
   if(task.s==="rev" || /^Watch:/.test(task.t)) return null;
   let topic=task.t.split(" — ")[0]
@@ -194,10 +217,10 @@ function pyqURL(task){
 }
 
 const HUB=[
-  {t:"Insight SSB (your blueprint)",u:INSIGHT,s:"notes · videos · Telegram"},
-  {t:"Full syllabus + free PDF",u:SYLL,s:"AglaSem"},
-  {t:"Free mock tests",u:MOCK,s:"PW · also Testbook"},
-  {t:"PYQ — full papers",u:g("AFCAT previous year question paper pdf with solution"),s:"per topic below"},
+  {t:"Insight SSB (blueprint)",u:INSIGHT,s:"notes · videos"},
+  {t:"Full syllabus + PDF",u:SYLL,s:"AglaSem"},
+  {t:"Free mock tests",u:MOCK,s:"PW · Testbook"},
+  {t:"PYQ — full papers",u:g("AFCAT previous year question paper pdf with solution"),s:"per topic"},
   {t:"Maths full course",u:y("AFCAT maths complete course free playlist"),s:"YouTube"},
   {t:"Reasoning full course",u:y("AFCAT reasoning complete course free playlist"),s:"YouTube"},
   {t:"GK / History one-shots",u:y("AFCAT general awareness one shot"),s:"YouTube"},
@@ -207,7 +230,6 @@ const HUB=[
 
 const S={math:"Quant",reas:"Reasoning",gk:"Gen Awareness",ca:"Current Affairs",eng:"English",rev:"Revision"};
 
-// ---- 50-day blueprint (exact topics from the Insight SSB timetable) ----
 const PLAN=[
 {p:0,d:1,title:"Number System + Indus Valley",tasks:[
   {s:"math",t:"Number System P1 — divisibility rules, unit-digit concepts",u:y("number system divisibility rules unit digit tricks")},
@@ -427,7 +449,6 @@ const PHASES=[
   {k:"Phase 3",h:"Reasoning + Static GK & Current Affairs",rng:"Days 36–50"},
 ];
 
-// English / Verbal Ability — not in the blueprint, so one rotating topic is added to every day
 const ENG=[
   {t:"English: Vocabulary — learn 15 new words (meaning + usage)",u:y("AFCAT vocabulary important words meaning")},
   {t:"English: Synonyms & antonyms practice",u:y("AFCAT synonyms antonyms important words")},
@@ -442,7 +463,7 @@ const ENG=[
 ];
 PLAN.forEach(day=>{ const e=ENG[(day.d-1)%ENG.length]; day.tasks.push({s:"eng",t:e.t,u:e.u}); });
 
-// ---- render ----
+// ---- state ----
 const KEY="afcat50:v2";
 let done=new Set();
 try{const raw=localStorage.getItem(KEY);if(raw)done=new Set(JSON.parse(raw));}catch(e){}
@@ -487,7 +508,7 @@ PHASES.forEach((ph,pi)=>{
   html+=`</section>`;
 });
 planEl.innerHTML=html;
-document.getElementById("totN").textContent=total;
+document.querySelectorAll(".js-tot").forEach(e=>e.textContent=total);
 
 // ---- collapse / open-in-sequence ----
 const KEY_OPEN="afcat50:open";
@@ -532,10 +553,10 @@ function refresh(){
     dc.style.color=full?"var(--done)":"var(--muted)";
   });
   const pct=total?Math.round(d/total*100):0;
-  document.getElementById("doneN").textContent=d;
-  document.getElementById("pctN").textContent=pct;
-  document.getElementById("daysN").textContent=daysDone;
-  document.getElementById("fill").style.width=pct+"%";
+  document.querySelectorAll(".js-done").forEach(e=>e.textContent=d);
+  document.querySelectorAll(".js-pct").forEach(e=>e.textContent=pct);
+  document.querySelectorAll(".js-days").forEach(e=>e.textContent=daysDone);
+  document.querySelectorAll(".js-fill").forEach(e=>e.style.width=pct+"%");
 }
 function toggle(li){
   const id=li.dataset.id;
@@ -543,7 +564,7 @@ function toggle(li){
   if(done.has(id))done.delete(id);else done.add(id);
   save();refresh();
   const day=PLAN.find(d=>d.d===dnum);
-  if(day&&dayFull(day)){            // finished this day → collapse it, open the next
+  if(day&&dayFull(day)){
     openSet.delete(dnum);
     const nxt=firstIncomplete(dnum);
     if(nxt)openSet.add(nxt);
@@ -562,13 +583,30 @@ planEl.addEventListener("keydown",e=>{
     e.preventDefault();const li=e.target.closest('li.task');if(li)toggle(li);
   }
 });
+
+// ---- menu ----
+const drawer=document.getElementById("drawer");
+const overlay=document.getElementById("overlay");
+const menuBtn=document.getElementById("menuBtn");
+function openMenu(){drawer.classList.add("open");overlay.classList.add("open");menuBtn.setAttribute("aria-expanded","true");drawer.setAttribute("aria-hidden","false");}
+function closeMenu(){drawer.classList.remove("open");overlay.classList.remove("open");menuBtn.setAttribute("aria-expanded","false");drawer.setAttribute("aria-hidden","true");}
+menuBtn.addEventListener("click",openMenu);
+overlay.addEventListener("click",closeMenu);
+document.getElementById("closeBtn").addEventListener("click",closeMenu);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu();});
+
 document.getElementById("reset").addEventListener("click",()=>{
   done.clear();save();refresh();
   openSet=new Set();const f=firstIncomplete(null);if(f)openSet.add(f);
   saveOpen();applyCollapse();
 });
+
 refresh();
 applyCollapse();
+
+if("serviceWorker" in navigator){
+  addEventListener("load",()=>navigator.serviceWorker.register("/sw.js").catch(()=>{}));
+}
 </script>
 </body>
 </html>
