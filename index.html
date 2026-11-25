@@ -1,13 +1,574 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>afcatprep</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>AFCAT 50-Day Blueprint</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+  /* Cards + hairlines. Accent blue, green = done, neutral tags. */
+  :root{
+    --bg:#eef1f8; --surface:#ffffff; --surface-2:#f6f8fd;
+    --ink:#15233c; --muted:#5a6b86; --line:#dde3ef;
+    --accent:#1f5fe0; --accent-soft:#e4ecfd;
+    --done:#1a8a5a; --done-soft:#e0f3ea;
+    --gold:#9a7420;
+    --shadow:0 1px 2px rgba(20,35,60,.05),0 6px 20px rgba(20,35,60,.06);
+    --head:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
+    --body:"Inter",ui-sans-serif,system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#070d1a; --surface:#142136; --surface-2:#1d2d48;
+    --ink:#eef3fd; --muted:#a3b4d1; --line:#32466a;
+    --accent:#6aa6ff; --accent-soft:#1d3a6b;
+    --done:#2fcf8c; --done-soft:#123a2b;
+    --gold:#d6ab57;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#070d1a; --surface:#142136; --surface-2:#1d2d48;
+    --ink:#eef3fd; --muted:#a3b4d1; --line:#32466a;
+    --accent:#6aa6ff; --accent-soft:#1d3a6b;
+    --done:#2fcf8c; --done-soft:#123a2b;
+    --gold:#d6ab57;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+
+  /* Hero */
+  .hero{margin-top:calc(-1 * env(safe-area-inset-top,0px));padding-top:calc(env(safe-area-inset-top,0px) + 32px);padding-bottom:20px}
+  .brandmark{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .brandmark svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+  .eyebrow{font-family:var(--head);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  h1{font-family:var(--head);font-weight:700;font-size:clamp(1.9rem,6vw,2.7rem);line-height:1.05;margin:.35rem 0 .5rem;text-wrap:balance;letter-spacing:-.015em}
+  .lede{color:var(--muted);max-width:60ch;font-size:.98rem;margin:0}
+  .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .fact{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:.8rem;color:var(--muted);box-shadow:var(--shadow)}
+  .fact b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+  /* Sticky progress card */
+  .bar-wrap{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);padding:12px 0;margin-bottom:8px}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
+  .bar-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:15px 17px;box-shadow:var(--shadow)}
+  .bar-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .bar-top .n{font-family:var(--head);font-weight:700;font-size:1.05rem}
+  .bar-top .pct{font-family:var(--head);font-weight:700;font-size:1.05rem;color:var(--accent);font-variant-numeric:tabular-nums}
+  .track{height:9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);margin-top:10px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--done));border-radius:999px;transition:width .4s ease}
+  .bar-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:11px;flex-wrap:wrap}
+  .hint{font-size:.79rem;color:var(--muted)}
+  .hint b{color:var(--ink);font-variant-numeric:tabular-nums}
+  .reset{font-family:var(--body);font-size:.78rem;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:5px 13px;cursor:pointer}
+  .reset:hover{color:var(--ink);border-color:var(--muted)}
+
+  /* Resource hub */
+  .hub{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:17px;box-shadow:var(--shadow);margin-bottom:14px}
+  .hub h2{font-family:var(--head);font-size:1rem;margin:0 0 4px}
+  .hub p{margin:0 0 13px;color:var(--muted);font-size:.86rem;max-width:64ch}
+  .hub p b{color:var(--ink)}
+  .hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+  .hub a{display:block;text-decoration:none;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.83rem;font-weight:500;transition:border-color .15s,transform .15s}
+  .hub a:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .hub a span{display:block;color:var(--muted);font-size:.72rem;font-weight:400;margin-top:2px}
+
+  .note{background:var(--accent-soft);border:1px solid var(--line);border-radius:14px;padding:13px 15px;font-size:.86rem;color:var(--ink);margin-bottom:18px;max-width:none}
+  .note b{font-weight:600}
+
+  /* Phase */
+  .phase{margin-top:28px}
+  .phase-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .phase-head .k{font-family:var(--head);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  .phase-head h2{font-family:var(--head);font-size:1.2rem;margin:0;font-weight:700;letter-spacing:-.01em}
+  .phase-head .rng{margin-left:auto;font-size:.76rem;color:var(--muted);white-space:nowrap}
+
+  /* Day card */
+  .day{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:15px 17px;box-shadow:var(--shadow);margin-bottom:12px}
+  .day.done{border-color:var(--done)}
+  .day-head{display:flex;align-items:center;gap:13px;margin-bottom:11px}
+  .daynum{flex:none;width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--head);font-weight:700;line-height:1}
+  .daynum small{font-size:.5rem;letter-spacing:.1em;font-weight:600;opacity:.75}
+  .daynum b{font-size:1.15rem;font-variant-numeric:tabular-nums}
+  .day.done .daynum{background:var(--done-soft);color:var(--done)}
+  .day-title{font-family:var(--head);font-weight:600;font-size:1.05rem;margin:0;letter-spacing:-.01em}
+  .day-check{margin-left:auto;flex:none;font-size:.74rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .day-head{cursor:pointer;user-select:none}
+  .chev{flex:none;margin-left:2px;width:28px;height:28px;border:0;background:none;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;border-radius:8px}
+  .chev:hover{background:var(--surface-2);color:var(--ink)}
+  .chev svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s ease}
+  .day.collapsed .chev svg{transform:rotate(-90deg)}
+  .day.collapsed .day-head{margin-bottom:0}
+  .day.collapsed .tasks{display:none}
+
+  ul.tasks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  li.task{display:flex;align-items:flex-start;gap:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+  li.task.on{background:var(--done-soft);border-color:var(--done)}
+  .box{flex:none;margin-top:1px;width:20px;height:20px;border-radius:6px;border:2px solid var(--line);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s;padding:0}
+  .box:hover{border-color:var(--accent)}
+  .box svg{width:12px;height:12px;stroke:#fff;stroke-width:3.4;fill:none;opacity:0}
+  li.task.on .box{background:var(--done);border-color:var(--done)}
+  li.task.on .box svg{opacity:1}
+  .t-main{flex:1;min-width:0}
+  .t-text{font-size:.94rem;line-height:1.45;cursor:pointer}
+  li.task.on .t-text{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
+  .t-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:7px}
+  /* neutral tag — one quiet style for every subject */
+  .tag{font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:3px 9px;border-radius:999px;color:var(--muted);background:transparent;border:1px solid var(--line);white-space:nowrap}
+  .res{display:inline-flex;align-items:center;gap:5px;font-size:.78rem;font-weight:600;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 11px}
+  .res svg{width:11px;height:11px;fill:currentColor}
+  .res.lesson{color:var(--accent)}
+  .res.lesson:hover{border-color:var(--accent);background:var(--accent-soft)}
+  .res.pyq{color:var(--gold)}
+  .res.pyq:hover{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 13%,transparent)}
+
+  footer{margin-top:30px;text-align:center;color:var(--muted);font-size:.78rem;line-height:1.6}
+  footer a{color:var(--accent)}
+  @media (max-width:420px){.daynum{width:42px;height:42px}}
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+
+<style>html,body{margin:0}</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="brandmark" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="4,12.5 10,18 20,6"/></svg></div>
+    <div class="eyebrow">AFCAT 1 / 2027</div>
+    <h1>50-Day Blueprint</h1>
+    <div class="facts">
+      <span class="fact">Exam <b>31 Jan</b></span>
+      <span class="fact"><b>100</b> questions</span>
+      <span class="fact"><b>300</b> marks</span>
+      <span class="fact">Marking <b>+3 / −1</b></span>
+      <span class="fact"><b>2 hours</b></span>
+    </div>
+  </header>
+
+  <div class="bar-wrap">
+    <div class="bar-card">
+      <div class="bar-top">
+        <span class="n">Progress</span>
+        <span class="pct"><span id="pctN">0</span>%</span>
+      </div>
+      <div class="track"><div class="fill" id="fill"></div></div>
+      <div class="bar-actions">
+        <span class="hint"><b id="doneN">0</b> of <span id="totN">0</span> topics · <b id="daysN">0</b>/50 days complete</span>
+        <button class="reset" id="reset">Reset all</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="hub">
+    <h2>Free resources</h2>
+    <p>All free. Each topic below has a <b>Lesson</b> (video) and a <b>PYQ</b> (previous-year questions) link — both live searches, so results stay fresh. Pick one teacher per subject and stick with them. Links open in a new tab.</p>
+    <div class="hub-grid" id="hub"></div>
+  </section>
+
+  <div id="plan"></div>
+
+  <footer>
+    Free notes, assignments & live classes for each day are on Insight SSB's YouTube & Telegram. Good luck. ✈️
+  </footer>
+</div>
+
+<script>
+const y = q => "https://www.youtube.com/results?search_query="+encodeURIComponent(q);
+const g = q => "https://www.google.com/search?q="+encodeURIComponent(q);
+const SYLL="https://career.aglasem.com/defence/afcat/syllabus";
+const MOCK="https://www.pw.live/defence/exams/afcat-mock-tests";
+const INSIGHT=y("Insight SSB AFCAT blueprint");
+
+// topic-wise previous-year-question search, built from the task's own topic name
+function pyqURL(task){
+  if(task.s==="rev" || /^Watch:/.test(task.t)) return null;
+  let topic=task.t.split(" — ")[0]
+    .replace(/^(History|Polity|GK|Science|Static|Culture|Economics|Economy|Geography|Environment|English|Defence|Revise)\s*:?\s*/i,"")
+    .replace(/\s+P\d[^—]*$/,"")
+    .trim();
+  if(!topic) return null;
+  return g("AFCAT "+topic+" previous year questions");
+}
+
+const HUB=[
+  {t:"Insight SSB (your blueprint)",u:INSIGHT,s:"notes · videos · Telegram"},
+  {t:"Full syllabus + free PDF",u:SYLL,s:"AglaSem"},
+  {t:"Free mock tests",u:MOCK,s:"PW · also Testbook"},
+  {t:"PYQ — full papers",u:g("AFCAT previous year question paper pdf with solution"),s:"per topic below"},
+  {t:"Maths full course",u:y("AFCAT maths complete course free playlist"),s:"YouTube"},
+  {t:"Reasoning full course",u:y("AFCAT reasoning complete course free playlist"),s:"YouTube"},
+  {t:"GK / History one-shots",u:y("AFCAT general awareness one shot"),s:"YouTube"},
+  {t:"Defence current affairs",u:y("defence current affairs 2026 AFCAT"),s:"YouTube"},
+  {t:"English booster",u:y("AFCAT english verbal ability complete course free"),s:"daily add-on"},
+];
+
+const S={math:"Quant",reas:"Reasoning",gk:"Gen Awareness",ca:"Current Affairs",eng:"English",rev:"Revision"};
+
+// ---- 50-day blueprint (exact topics from the Insight SSB timetable) ----
+const PLAN=[
+{p:0,d:1,title:"Number System + Indus Valley",tasks:[
+  {s:"math",t:"Number System P1 — divisibility rules, unit-digit concepts",u:y("number system divisibility rules unit digit tricks")},
+  {s:"math",t:"Number System P2 — remainder theorem, number series, misc",u:y("remainder theorem number series shortcuts")},
+  {s:"gk",t:"History: Stone Age & Indus Valley Civilisation",u:y("Indus valley civilisation stone age one shot gk")},
+]},
+{p:0,d:2,title:"Simplification + Vedic Era",tasks:[
+  {s:"math",t:"Simplification P1 — fractions, numerator/denominator, decimals",u:y("simplification fractions decimals tricks")},
+  {s:"math",t:"Simplification P2 — indices & surds, square & cube roots",u:y("indices surds square root cube root tricks")},
+  {s:"gk",t:"History: Vedic & Post-Vedic Era",u:y("vedic post vedic period one shot gk")},
+]},
+{p:0,d:3,title:"LCM/HCF + Percentage start",tasks:[
+  {s:"math",t:"Simplification P3 — LCM & HCF, misc",u:y("LCM and HCF tricks problems")},
+  {s:"math",t:"Percentage P1 & P2 — theory + basic questions",u:y("percentage basics concept tricks")},
+  {s:"gk",t:"History: Basics of Mahajanapadas",u:y("mahajanapadas one shot gk history")},
+]},
+{p:0,d:4,title:"Percentage + Mauryan Empire",tasks:[
+  {s:"math",t:"Percentage P3 — successive %, increase & decrease",u:y("successive percentage increase decrease tricks")},
+  {s:"math",t:"Percentage P4 — exam-related, population based",u:y("percentage population based questions tricks")},
+  {s:"gk",t:"History: Mauryan Empire",u:y("mauryan empire one shot gk")},
+]},
+{p:0,d:5,title:"Percentage (advanced)",tasks:[
+  {s:"math",t:"Percentage P5 — price-consumption-expense, % change in area/volume",u:y("percentage price consumption expenditure tricks")},
+  {s:"math",t:"Percentage P6 — elections, Venn, commission mix, misc",u:y("percentage election venn commission problems")},
+]},
+{p:0,d:6,title:"Ratio & Proportion",tasks:[
+  {s:"math",t:"Ratio & Proportion P1 & P2 — theory + basic",u:y("ratio and proportion basics tricks")},
+  {s:"math",t:"Ratio & Proportion P3 — A:B:C type, direct/indirect proportion",u:y("ratio A B C type direct indirect proportion")},
+]},
+{p:0,d:7,title:"Ratio & Proportion (cont.)",tasks:[
+  {s:"math",t:"Ratio & Proportion P4 — coins, income",u:y("ratio proportion coins income problems")},
+  {s:"math",t:"Ratio & Proportion P5 — adding/removing elements, misc",u:y("ratio adding removing elements problems")},
+]},
+{p:0,d:8,title:"Average + Buddhism/Jainism",tasks:[
+  {s:"math",t:"Average P1 & P2 — theory, consecutive numbers, adding/replacing",u:y("average concept consecutive numbers tricks")},
+  {s:"gk",t:"History: Buddhism & Jainism, important dynasties",u:y("buddhism jainism one shot gk")},
+]},
+{p:0,d:9,title:"Average + Delhi Sultanate",tasks:[
+  {s:"math",t:"Average P3 — weighted average, exam marks, age",u:y("weighted average age problems tricks")},
+  {s:"math",t:"Average P4 — middle subject overlaps / left out",u:y("average middle subject overlap problems")},
+  {s:"gk",t:"History: Delhi Sultanate",u:y("delhi sultanate one shot gk")},
+]},
+{p:0,d:10,title:"Profit & Loss start + Mughals",tasks:[
+  {s:"math",t:"Average P5 — wrong written marks, misc",u:y("average wrong marks correction problems")},
+  {s:"math",t:"Profit, Loss & Discount P1 — theory",u:y("profit and loss discount basics tricks")},
+  {s:"gk",t:"History: Mughals, travellers to India, Bhakti & Sufi",u:y("mughal empire bhakti sufi movement one shot")},
+]},
+{p:0,d:11,title:"Profit & Loss + Vijaynagar",tasks:[
+  {s:"math",t:"P&L P2 — basic, successive change, SP & CP relation",u:y("profit loss successive change SP CP tricks")},
+  {s:"math",t:"P&L P3 — marked price, dishonest shopkeeper",u:y("marked price dishonest shopkeeper problems")},
+  {s:"gk",t:"History: Vijaynagar & Bahmani, fathers of various fields",u:y("vijayanagara bahmani kingdom one shot gk")},
+]},
+{p:0,d:12,title:"Profit & Loss + Charter Acts",tasks:[
+  {s:"math",t:"P&L P4 — articles combined, finding CP, finding SP",u:y("profit loss finding CP SP articles problems")},
+  {s:"math",t:"P&L P5 — discount, compound case",u:y("profit loss discount compound case problems")},
+  {s:"gk",t:"History: Charter Acts, land revenue, Congress sessions",u:y("charter acts land revenue systems one shot gk")},
+]},
+{p:0,d:13,title:"Profit & Loss mixed + Battles",tasks:[
+  {s:"math",t:"P&L P6 — mixed problems",u:y("profit loss mixed questions practice")},
+  {s:"gk",t:"History: battles & treaties, inventions & discoveries",u:y("important battles treaties india one shot gk")},
+]},
+{p:0,d:14,title:"Simple Interest + History video",tasks:[
+  {s:"math",t:"Simple Interest P1 & P2 — theory, N-times, two different times, misc",u:y("simple interest tricks N times problems")},
+  {s:"gk",t:"History: Governor Generals & Viceroys, books & authors",u:y("governor general viceroy list one shot gk")},
+  {s:"gk",t:"Watch: complete History one-shot (Part 1)",u:y("complete history one shot AFCAT part 1")},
+]},
+{p:0,d:15,title:"Compound Interest + Commissions",tasks:[
+  {s:"math",t:"Compound Interest P1 & P2 — theory, basic, N-times, misc",u:y("compound interest tricks N times problems")},
+  {s:"gk",t:"History: commissions in British India, political organisations & societies",u:y("british india commissions political societies one shot")},
+]},
+{p:0,d:16,title:"SI–CI mixed + Revolt of 1857",tasks:[
+  {s:"math",t:"Mixed Interest — SI–CI difference, mixed SI/CI problems",u:y("difference between simple compound interest tricks")},
+  {s:"gk",t:"History: Marathas, Revolt of 1857, revolutionaries, revolutions",u:y("revolt of 1857 marathas freedom struggle one shot")},
+]},
+{p:0,d:17,title:"Partnership + Socio-reforms",tasks:[
+  {s:"math",t:"Partnership — share of one person, profit, invested time, misc",u:y("partnership problems tricks maths")},
+  {s:"gk",t:"History: newspapers, socio-reform movements, United Nations",u:y("socio religious reform movements one shot gk")},
+]},
+{p:0,d:18,title:"Revise full History",tasks:[
+  {s:"rev",t:"Revise all History (ancient → modern) — redo weak areas",u:y("complete history revision one shot AFCAT")},
+  {s:"gk",t:"Watch: complete History one-shot (Part 2)",u:y("complete history one shot AFCAT part 2")},
+]},
+
+{p:1,d:19,title:"Mixture & Allegation + Alloys",tasks:[
+  {s:"math",t:"Mixture & Allegation P1 — basic, one item added, acid–water, alloys",u:y("mixture and allegation tricks basics")},
+  {s:"gk",t:"GK: alloys, common chemical names, first cabinet of free India, parties & founders",u:y("alloys common chemical names gk one shot")},
+]},
+{p:1,d:20,title:"Mixture (cont.) + Science",tasks:[
+  {s:"math",t:"Mixture & Allegation P2 — quantity taken out/added, replacement/repetition",u:y("mixture replacement repetition problems tricks")},
+  {s:"gk",t:"Science: SI units, -logies, vitamins & minerals, diseases, misc",u:y("vitamins minerals deficiency diseases gk one shot")},
+]},
+{p:1,d:21,title:"Time & Work + Polity intro",tasks:[
+  {s:"math",t:"Time & Work P1 — theory, basic, M-D-H, remaining work",u:y("time and work tricks basics MDH")},
+  {s:"math",t:"Time & Work P2 — extra persons, efficiency, work & wages, alternate days",u:y("time and work efficiency wages alternate days")},
+  {s:"gk",t:"Polity: intro, Fundamental Rights, DPSP, Fundamental Duties",u:y("fundamental rights DPSP duties one shot polity")},
+]},
+{p:1,d:22,title:"Pipes & Cisterns + President",tasks:[
+  {s:"math",t:"Time & Work P3 — pipes & cisterns, misc",u:y("pipes and cisterns tricks problems")},
+  {s:"gk",t:"Polity: Union Executive — President, amendments, basic structure, PM & Council",u:y("president prime minister union executive one shot polity")},
+  {s:"gk",t:"Watch: GK 50 most-expected questions",u:y("AFCAT 50 most expected gk questions")},
+]},
+{p:1,d:23,title:"Time-Speed-Distance + Legislature",tasks:[
+  {s:"math",t:"TSD P1 & P2 — theory, average speed, relative speed, parts of distance",u:y("time speed distance average relative speed tricks")},
+  {s:"gk",t:"Polity: Vice President, Union Legislature, State Government",u:y("parliament vice president state government one shot polity")},
+]},
+{p:1,d:24,title:"TSD + Judiciary",tasks:[
+  {s:"math",t:"TSD P3 — late/early arrival, distance/time constant",u:y("time speed distance late early arrival problems")},
+  {s:"math",t:"TSD P4 — with/without stoppage, thief & police / chase",u:y("train stoppage thief police chase problems tricks")},
+  {s:"gk",t:"Polity: Supreme Court, High Court, constitutional & non-constitutional bodies",u:y("supreme court constitutional bodies one shot polity")},
+]},
+{p:1,d:25,title:"Revise Science + Polity",tasks:[
+  {s:"rev",t:"Revise all Science + Polity done so far",u:y("general science polity revision one shot AFCAT")},
+]},
+{p:1,d:26,title:"Trains + Economics",tasks:[
+  {s:"math",t:"TSD P5 — trains: crossing man/platform/train, direction, length & relative",u:y("train problems crossing platform tricks")},
+  {s:"gk",t:"Economics: indices, curves, important economic terms",u:y("important economic terms indices gk one shot")},
+]},
+{p:1,d:27,title:"Boats & Streams + Environment",tasks:[
+  {s:"math",t:"TSD P6 — boats & streams, upstream & downstream",u:y("boats and streams upstream downstream tricks")},
+  {s:"gk",t:"Environment chronology (summits, protocols, conventions)",u:y("environment conventions protocols chronology gk")},
+]},
+{p:1,d:28,title:"Clocks + Indian Geography",tasks:[
+  {s:"math",t:"Clock P1 & P2 — theory, angle & time, hands coincidence, misc",u:y("clock reasoning angle problems tricks")},
+  {s:"gk",t:"Geography: India's location, Himalayan mountains, Northern plains",u:y("indian geography physical himalayas northern plains one shot")},
+]},
+{p:1,d:29,title:"Ages + Geography",tasks:[
+  {s:"math",t:"Ages P1 & P2 — present age, comparison, future/past, average age",u:y("age problems tricks reasoning maths")},
+  {s:"gk",t:"Geography: Peninsular hills, coastal plains, islands of India",u:y("peninsular plateau coastal plains islands india geography")},
+]},
+{p:1,d:30,title:"Mensuration + Rivers",tasks:[
+  {s:"math",t:"Mensuration P1 — 2D (triangle, quad, circle, polygon) & 3D (cube…sphere) theory",u:y("mensuration 2D 3D formulas all shapes")},
+  {s:"math",t:"Mensuration P2 — cost related, area & perimeter",u:y("mensuration area perimeter cost problems")},
+  {s:"gk",t:"Geography: rivers in India",u:y("indian rivers tributaries one shot geography")},
+]},
+{p:1,d:31,title:"Mensuration + Soils/Science",tasks:[
+  {s:"math",t:"Mensuration P3 — shaded region, melting/bend concepts",u:y("mensuration shaded region melting problems")},
+  {s:"math",t:"Mensuration P4 — area/volume % changes, misc",u:y("mensuration volume percentage change problems")},
+  {s:"gk",t:"Geography: soils, important latitudes, Earth's atmosphere + revise Science",u:y("soils of india atmosphere latitudes geography one shot")},
+]},
+{p:1,d:32,title:"Revise Polity/Eco/Env/Geo",tasks:[
+  {s:"rev",t:"Revise Polity, Economics, Environment, Geography (partly)",u:y("polity economy environment geography revision AFCAT")},
+]},
+{p:1,d:33,title:"Probability + Static GK",tasks:[
+  {s:"math",t:"Probability P1 & P2 — classical, coins, dice, cards, bag of balls, conditions",u:y("probability coins dice cards balls tricks")},
+  {s:"gk",t:"Static: countries & currencies, famous days & dates",u:y("countries capitals currencies important days gk")},
+]},
+{p:1,d:34,title:"Statistics + Static GK",tasks:[
+  {s:"math",t:"Statistics P1–P3 — mean, median, mode, measures of dispersion, misc",u:y("statistics mean median mode dispersion tricks")},
+  {s:"gk",t:"Static: nicknames of personalities, revolutions, fathers of fields",u:y("nicknames of personalities fathers of fields gk")},
+]},
+{p:1,d:35,title:"Height & Distance + Static GK",tasks:[
+  {s:"math",t:"Height & Distance P1–P3 — trigo ratios, elevation/depression, shadow",u:y("height and distance trigonometry tricks problems")},
+  {s:"gk",t:"Static: headquarters, sports",u:y("important headquarters organisations sports gk one shot")},
+]},
+
+{p:2,d:36,title:"Analogy + Sports revision",tasks:[
+  {s:"reas",t:"Analogy P1 & P2 — words, numerical/alphabet, advanced, figure analogy",u:y("analogy reasoning all types tricks")},
+  {s:"gk",t:"Revise Sports + Geography · watch Sports one-shot",u:y("sports current affairs 2026 one shot gk")},
+]},
+{p:2,d:37,title:"Non-Verbal + Awards",tasks:[
+  {s:"reas",t:"Figures/Non-Verbal P1 & P2 — embedded figure, odd one out, missing figure, paper folding/cutting",u:y("non verbal reasoning embedded figure paper folding tricks")},
+  {s:"gk",t:"Static: awards, first cabinet of free India, parties & founders",u:y("awards and honours gk one shot 2026")},
+]},
+{p:2,d:38,title:"Non-Verbal + Art & Culture",tasks:[
+  {s:"reas",t:"Figures/Non-Verbal P3 & P4 — dot figure, counting figures, mirror/water image, mixed",u:y("counting figures mirror water image reasoning tricks")},
+  {s:"gk",t:"Culture: Indian festivals, paintings, dances of India",u:y("indian festivals paintings classical dances gk one shot")},
+]},
+{p:2,d:39,title:"Mirror/Water Image + Static",tasks:[
+  {s:"reas",t:"Mirror & Water Image — words, numbers, figures",u:y("mirror image water image reasoning tricks")},
+  {s:"gk",t:"Static: research institutes of India, musical instruments & persons",u:y("research institutes india musical instruments gk")},
+]},
+{p:2,d:40,title:"Series + Defence/CA video",tasks:[
+  {s:"reas",t:"Number & Alphabet Series P1 & P2 — basic, mixed/alternate, dictionary, wrong/missing term",u:y("number alphabet series reasoning tricks all types")},
+  {s:"gk",t:"Static: folk music of India, motto of the forces",u:y("folk dances music india motto of indian forces gk")},
+  {s:"ca",t:"Watch: complete Defence + Static + Current Affairs one-shot",u:y("complete defence static current affairs AFCAT one shot")},
+]},
+{p:2,d:41,title:"Blood Relation + Static",tasks:[
+  {s:"reas",t:"Blood Relation — family tree, multiple generations, coded relations",u:y("blood relation reasoning all types tricks")},
+  {s:"gk",t:"Static: cities & towns nicknames, minerals",u:y("cities nicknames minerals india gk one shot")},
+]},
+{p:2,d:42,title:"Direction + Defence/Sports",tasks:[
+  {s:"reas",t:"Direction — distance & direction, angle, shadow, shortest-distance",u:y("direction sense reasoning tricks problems")},
+  {s:"ca",t:"Defence topics (exercises, missiles, ranks, inductions) + sports",u:y("defence current affairs exercises missiles 2026")},
+]},
+{p:2,d:43,title:"Coding–Decoding",tasks:[
+  {s:"reas",t:"Coding-Decoding P1 & P2 — letter, number, mixed, statement & message coding",u:y("coding decoding reasoning all types tricks")},
+]},
+{p:2,d:44,title:"Ranking/Order + Awards",tasks:[
+  {s:"reas",t:"Ranking/Order P1 & P2 — position from top/bottom, both-side rank, interchange, ordering",u:y("ranking and order reasoning tricks problems")},
+  {s:"gk",t:"Watch: awards & honours one-shot",u:y("awards honours current affairs 2026 one shot")},
+]},
+{p:2,d:45,title:"Dice & Cube",tasks:[
+  {s:"reas",t:"Dice & Cube — faces identification, open-dice folding",u:y("dice and cube reasoning tricks")},
+]},
+{p:2,d:46,title:"Venn Diagram",tasks:[
+  {s:"reas",t:"Venn Diagram — simple intersection, categorical, numerical",u:y("venn diagram reasoning problems tricks")},
+]},
+{p:2,d:47,title:"Syllogism + CA video",tasks:[
+  {s:"reas",t:"Syllogism P1 & P2 — A/E/I/O statements, definite & possible cases, either-or",u:y("syllogism reasoning tricks all cases")},
+  {s:"ca",t:"Watch: 100 most-expected current affairs",u:y("100 most expected current affairs AFCAT 2026")},
+]},
+{p:2,d:48,title:"Statement & Conclusion",tasks:[
+  {s:"reas",t:"Statement & Conclusion — conclusion, assumption, data sufficiency",u:y("statement and conclusion assumption reasoning tricks")},
+]},
+{p:2,d:49,title:"Calendar",tasks:[
+  {s:"reas",t:"Calendar — day-date relation, finding date/day, repetition & leap year",u:y("calendar reasoning tricks day date finding")},
+]},
+{p:2,d:50,title:"Jumbled + wrap-up",tasks:[
+  {s:"reas",t:"Jumbled — basic, group jumbles (odd one out), number-position codes, series",u:y("jumbled words reasoning tricks")},
+  {s:"rev",t:"Revise the full plan + attempt a free full mock test",u:MOCK},
+]},
+];
+
+const PHASES=[
+  {k:"Phase 1",h:"Arithmetic + full History",rng:"Days 1–18"},
+  {k:"Phase 2",h:"Advanced Quant + Polity · Geo · Science · Eco",rng:"Days 19–35"},
+  {k:"Phase 3",h:"Reasoning + Static GK & Current Affairs",rng:"Days 36–50"},
+];
+
+// English / Verbal Ability — not in the blueprint, so one rotating topic is added to every day
+const ENG=[
+  {t:"English: Vocabulary — learn 15 new words (meaning + usage)",u:y("AFCAT vocabulary important words meaning")},
+  {t:"English: Synonyms & antonyms practice",u:y("AFCAT synonyms antonyms important words")},
+  {t:"English: Idioms & phrases",u:y("AFCAT idioms and phrases important")},
+  {t:"English: Spotting the error — grammar rules",u:y("AFCAT spotting error grammar rules english")},
+  {t:"English: Fill in the blanks / sentence completion",u:y("AFCAT fill in the blanks sentence completion")},
+  {t:"English: One-word substitution",u:y("AFCAT one word substitution important")},
+  {t:"English: Reading comprehension — one passage, timed",u:y("AFCAT reading comprehension strategy practice")},
+  {t:"English: Cloze test practice",u:y("AFCAT cloze test english practice")},
+  {t:"English: Sentence rearrangement / para-jumbles",u:y("AFCAT para jumbles sentence rearrangement")},
+  {t:"English: Spelling & homonyms + revise this week's words",u:y("AFCAT spelling test homonyms english")},
+];
+PLAN.forEach(day=>{ const e=ENG[(day.d-1)%ENG.length]; day.tasks.push({s:"eng",t:e.t,u:e.u}); });
+
+// ---- render ----
+const KEY="afcat50:v2";
+let done=new Set();
+try{const raw=localStorage.getItem(KEY);if(raw)done=new Set(JSON.parse(raw));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify([...done]));}catch(e){}}
+
+const CHK='<svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,3"/></svg>';
+const CHEV='<svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>';
+
+document.getElementById("hub").innerHTML=HUB.map(h=>
+  `<a href="${h.u}" target="_blank" rel="noopener">${h.t}<span>${h.s}</span></a>`).join("");
+
+let total=0;
+const planEl=document.getElementById("plan");
+let html="";
+PHASES.forEach((ph,pi)=>{
+  html+=`<section class="phase"><div class="phase-head"><span class="k">${ph.k}</span><h2>${ph.h}</h2><span class="rng">${ph.rng}</span></div>`;
+  PLAN.filter(d=>d.p===pi).forEach(day=>{
+    total+=day.tasks.length;
+    html+=`<article class="day" data-day="${day.d}">
+      <div class="day-head">
+        <div class="daynum"><small>DAY</small><b>${day.d}</b></div>
+        <h3 class="day-title">${day.title}</h3>
+        <span class="day-check" data-dc="${day.d}"></span>
+        <button class="chev" aria-label="Expand or collapse day">${CHEV}</button>
+      </div>
+      <ul class="tasks">`;
+    day.tasks.forEach((t,i)=>{
+      const id="d"+day.d+"-"+i;
+      const pq=pyqURL(t);
+      let links=`<a class="res lesson" href="${t.u}" target="_blank" rel="noopener">Lesson</a>`;
+      if(pq) links+=`<a class="res pyq" href="${pq}" target="_blank" rel="noopener">PYQ</a>`;
+      html+=`<li class="task" data-id="${id}">
+        <div class="box" role="checkbox" tabindex="0" aria-label="Mark done">${CHK}</div>
+        <div class="t-main">
+          <div class="t-text">${t.t}</div>
+          <div class="t-row"><span class="tag">${S[t.s]}</span>${links}</div>
+        </div>
+      </li>`;
+    });
+    html+=`</ul></article>`;
+  });
+  html+=`</section>`;
+});
+planEl.innerHTML=html;
+document.getElementById("totN").textContent=total;
+
+// ---- collapse / open-in-sequence ----
+const KEY_OPEN="afcat50:open";
+let openSet=new Set();
+try{const r=localStorage.getItem(KEY_OPEN);if(r)openSet=new Set(JSON.parse(r));}catch(e){}
+function saveOpen(){try{localStorage.setItem(KEY_OPEN,JSON.stringify([...openSet]));}catch(e){}}
+function dayFull(day){return day.tasks.filter((t,i)=>done.has("d"+day.d+"-"+i)).length===day.tasks.length;}
+function firstIncomplete(after){
+  const list=PLAN.filter(d=>!dayFull(d));
+  if(after!=null){const nxt=list.find(d=>d.d>after);if(nxt)return nxt.d;}
+  return list.length?list[0].d:null;
+}
+if(openSet.size===0){const f=firstIncomplete(null);if(f){openSet.add(f);saveOpen();}}
+function applyCollapse(){
+  PLAN.forEach(day=>{
+    const el=document.querySelector(`.day[data-day="${day.d}"]`);
+    if(el)el.classList.toggle("collapsed",!openSet.has(day.d));
+  });
+}
+function toggleDay(d){
+  if(openSet.has(d))openSet.delete(d);else openSet.add(d);
+  saveOpen();applyCollapse();
+}
+
+function refresh(){
+  let d=0,daysDone=0;
+  document.querySelectorAll("li.task").forEach(li=>{
+    const on=done.has(li.dataset.id);
+    li.classList.toggle("on",on);
+    li.querySelector('[role="checkbox"]').setAttribute("aria-checked",on);
+    if(on)d++;
+  });
+  PLAN.forEach(day=>{
+    const dc=document.querySelector(`[data-dc="${day.d}"]`);
+    const card=document.querySelector(`.day[data-day="${day.d}"]`);
+    const tot=day.tasks.length;
+    const got=day.tasks.filter((t,i)=>done.has("d"+day.d+"-"+i)).length;
+    const full=got===tot;
+    if(full)daysDone++;
+    card.classList.toggle("done",full);
+    dc.textContent=full?"done ✓":got+"/"+tot;
+    dc.style.color=full?"var(--done)":"var(--muted)";
+  });
+  const pct=total?Math.round(d/total*100):0;
+  document.getElementById("doneN").textContent=d;
+  document.getElementById("pctN").textContent=pct;
+  document.getElementById("daysN").textContent=daysDone;
+  document.getElementById("fill").style.width=pct+"%";
+}
+function toggle(li){
+  const id=li.dataset.id;
+  const dnum=+id.slice(1).split("-")[0];
+  if(done.has(id))done.delete(id);else done.add(id);
+  save();refresh();
+  const day=PLAN.find(d=>d.d===dnum);
+  if(day&&dayFull(day)){            // finished this day → collapse it, open the next
+    openSet.delete(dnum);
+    const nxt=firstIncomplete(dnum);
+    if(nxt)openSet.add(nxt);
+    saveOpen();applyCollapse();
+  }
+}
+planEl.addEventListener("click",e=>{
+  if(e.target.closest('.res')) return;
+  const head=e.target.closest('.day-head');
+  if(head){toggleDay(+head.closest('.day').dataset.day);return;}
+  const li=e.target.closest('li.task');
+  if(li && (e.target.closest('.box')||e.target.closest('.t-text'))) toggle(li);
+});
+planEl.addEventListener("keydown",e=>{
+  if((e.key===" "||e.key==="Enter")&&e.target.classList.contains("box")){
+    e.preventDefault();const li=e.target.closest('li.task');if(li)toggle(li);
+  }
+});
+document.getElementById("reset").addEventListener("click",()=>{
+  done.clear();save();refresh();
+  openSet=new Set();const f=firstIncomplete(null);if(f)openSet.add(f);
+  saveOpen();applyCollapse();
+});
+refresh();
+applyCollapse();
+</script>
+</body>
 </html>
